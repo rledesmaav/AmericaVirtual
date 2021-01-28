@@ -1,0 +1,97 @@
+﻿@model Barberia.Models.DiaNoLaborableModel
+@using Resources
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="row" style="padding-bottom:20px">
+            <div class="col-md-12">
+                <h4>Crear Día</h4>
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Datos <small>de</small> Empleado</h3>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdEnte)
+                            @Html.DropDownList("IdEnte", new SelectList(ViewBag.Entes, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdEnte, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Fecha)
+                            @Html.TextBoxFor(model => model.Fecha, "", new { @type = "date", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descripcion)
+                            @Html.TextAreaFor(model => model.Descripcion, 4, 55, new { @style = "width:100%" })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer row">
+
+            <div class="col-md-4">
+                <input type="submit" id="btnCrear" style="width:100%" value="CREAR" class="btn btn-default" />
+            </div>
+
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/smyp.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#IdEnte").focus();
+        });
+
+        $('form').submit(function (e) {
+
+            var valid = true;
+            $("form").each(function () {
+                valid = valid && $(this).valid();
+            }); if (!valid) return;
+
+            document.getElementById("btnCrear").value = "Enviando...";
+            document.getElementById("btnCrear").disabled = true;
+
+            return true;
+
+        });
+
+    </script>
+}

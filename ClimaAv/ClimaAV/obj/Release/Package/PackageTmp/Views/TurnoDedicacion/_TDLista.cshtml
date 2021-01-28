@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Barberia.Models.TurnoDedicacionListaModel>
+@using Resources
+
+@if (Model.Count() != 0)
+{
+    <table id="dedicacionLista" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Editar</th>
+                <th>Servicio</th>
+                <th>Día</th>
+                <th>Desde</th>
+                <th>Hasta</th>
+                <th>Duración Turno</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a style="padding:15px" title="@Resources.Editar" href="@Url.Action("Edit", new { id = item.ORID })"><i class="fas fa-pen"></i></a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Servicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Desde)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hasta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DuracionTurno)
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Editar</th>
+                <th>Servicio</th>
+                <th>Día</th>
+                <th>Desde</th>
+                <th>Hasta</th>
+                <th>Duración Turno</th>
+            </tr>
+        </tfoot>
+    </table>
+}

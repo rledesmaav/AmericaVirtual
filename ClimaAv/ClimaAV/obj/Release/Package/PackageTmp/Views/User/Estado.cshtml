@@ -1,0 +1,41 @@
+﻿@model Barberia.Database.User
+
+@{
+    ViewBag.Title = "Estado";
+}
+
+@Html.HiddenFor(model => model.UserID)
+
+<section class="content-header">
+    <h2 style="color:#3c8dbc" class="box-title">
+        <i class="fa fa-user"></i>
+        @ViewBag.Title
+    </h2>
+</section>
+
+<section class="content">
+
+    @if (ViewBag.Estado == "Baja")
+    {
+        <h2>Baja</h2>
+        <h3>¿Estás seguro de dar de Baja?</h3>
+    }
+    else
+    {
+        <h2>Alta</h2>
+        <h3>¿Estás seguro de dar de Alta?</h3>
+    }
+
+    <h4>Usuario</h4>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Aceptar" class="btn btn-default" />
+            | @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+
+</section>

@@ -1,0 +1,80 @@
+﻿
+@model Barberia.Models.VentaModel
+
+@using (Html.BeginForm())
+{
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NumeroComprobante)
+                    @Html.EditorFor(model => model.NumeroComprobante, new { htmlAttributes = new { @class = "form-control vent", @maxlength = "50", onkeyup = "Mayuscula(this)" } })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group label-floating">
+                    <label class="control-label" style="top:-28px">@Html.LabelFor(model => model.FechaD)</label>
+                    @Html.TextBoxFor(model => model.FechaD, null, new { @type = "date", @class = "form-control vent" })
+                    @Html.ValidationMessageFor(model => model.FechaD)
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group label-floating">
+                    <label class="control-label" style="top:-28px">@Html.LabelFor(model => model.FechaH)</label>
+                    @Html.TextBoxFor(model => model.FechaH, null, new { @type = "date", @class = "form-control vent" })
+                    @Html.ValidationMessageFor(model => model.FechaH)
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IdEstado)
+                    @Html.DropDownList("IdEstado", new SelectList(ViewBag.EstadosVentaBusqueda, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control vent" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="button" onclick="ProcesarFiltro()" class="btn btn-primary form-control">Buscar Ventas</button>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="button" onclick="AddVentaModal()" class="btn btn-primary form-control">Nueva Venta</button>
+                </div>
+            </div>
+
+            @*<div class="col-md-3">
+                    <div class="form-group">
+                        <button type="button" onclick="GenerarExcel()" class="btn btn-primary form-control">Excel</button>
+                    </div>
+                </div>*@
+        </div>
+
+        <div id="ventas">
+            @Html.Partial("_VentaLista", new List<Barberia.Models.VentaListaModel>())
+        </div>
+
+        <div id="VentaModal">
+            @Html.Partial("_CreateVenta", new Barberia.Models.VentaModel())
+        </div>
+
+        <div id="DetalleVentaModal">
+            @Html.Partial("_CreateDetalle", new Barberia.Models.DetalleVentaModel())
+        </div>
+
+        <div id="OperacionesModal">
+            @Html.Partial("_OperacionesVenta", new Barberia.Models.OperacionesVentaModel())
+        </div>
+
+        <div id="ListaDetalleVenta">
+            @Html.Partial("_DetalleVentaLista", new List<Barberia.Models.DetalleVentaListaModel>())
+        </div>
+    </div>
+}
+
+

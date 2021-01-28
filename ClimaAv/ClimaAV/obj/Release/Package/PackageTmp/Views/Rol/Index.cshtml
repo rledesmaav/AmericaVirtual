@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Barberia.Models.RolIndex>
+@using Resources
+@using System.Configuration
+
+@{
+    ViewBag.Title = Resources.Rol;
+}
+
+<link href="~/Content/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+
+<section class="content-header">
+    <h2 style="color:#3c8dbc" class="box-title">
+        <i class="fa fa-object-group"></i>
+        @ViewBag.Title
+    </h2>
+</section>
+
+<div class="col-md-12">
+    @Html.ActionLink("Crear Nuevo", "Create")
+</div>
+
+<section class="content">
+
+    <table id="example1" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
+                </th>
+                <th>
+                    Opciones
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+
+                    <td>
+                        <a class="col-md-4" title="@Resources.Editar" href="@Url.Action("Edit", new { id = item.RolID })"><i class="fa fa-pen fa-lg"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</section>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+
+
+
+    </script>
+}

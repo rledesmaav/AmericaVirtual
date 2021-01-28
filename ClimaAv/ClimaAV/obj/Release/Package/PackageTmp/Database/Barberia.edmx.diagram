@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a04d35b64a43494996b130d31843aac2" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="BarberiaModel.Caja" Width="1.5" PointX="5.75" PointY="2.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Cliente" Width="1.5" PointX="3.75" PointY="18.125" />
+        <EntityTypeShape EntityType="BarberiaModel.ClienteTurno" Width="1.5" PointX="7.75" PointY="2.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Compra" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BarberiaModel.CompraEstado" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BarberiaModel.DetalleCompra" Width="1.5" PointX="9.75" PointY="2.75" />
+        <EntityTypeShape EntityType="BarberiaModel.DetalleVenta" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BarberiaModel.DiaNoLaborable" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Empleado" Width="1.5" PointX="3" PointY="23.625" />
+        <EntityTypeShape EntityType="BarberiaModel.EmpleadoEspecialidad" Width="1.5" PointX="3.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Ente" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BarberiaModel.EnteEmpleado" Width="1.5" PointX="11.75" PointY="2.75" />
+        <EntityTypeShape EntityType="BarberiaModel.EnteEspecialidad" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Especialidad" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Localidad" Width="1.5" PointX="1.5" PointY="13.25" />
+        <EntityTypeShape EntityType="BarberiaModel.Partido" Width="1.5" PointX="1.5" PointY="17.625" />
+        <EntityTypeShape EntityType="BarberiaModel.Producto" Width="1.5" PointX="11.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Proveedor" Width="1.5" PointX="5.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Provincia" Width="1.5" PointX="1.5" PointY="20.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Rol" Width="1.5" PointX="0.75" PointY="28.625" />
+        <EntityTypeShape EntityType="BarberiaModel.Rule" Width="1.5" PointX="3" PointY="32.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Servicio" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="BarberiaModel.Sexo" Width="1.5" PointX="0.75" PointY="24.375" />
+        <EntityTypeShape EntityType="BarberiaModel.Stock" Width="1.5" PointX="11.75" PointY="9.75" />
+        <EntityTypeShape EntityType="BarberiaModel.TipoComprobante" Width="1.5" PointX="7.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BarberiaModel.TipoOperacion" Width="1.5" PointX="9.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BarberiaModel.Turno" Width="1.5" PointX="11.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BarberiaModel.TurnoDedicacion" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="BarberiaModel.TurnoEstado" Width="1.5" PointX="13.75" PointY="2.75" />
+        <EntityTypeShape EntityType="BarberiaModel.TurnoTipo" Width="1.5" PointX="13.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BarberiaModel.User" Width="1.5" PointX="3" PointY="27.875" />
+        <EntityTypeShape EntityType="BarberiaModel.Venta" Width="1.5" PointX="13.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BarberiaModel.VentaEstado" Width="1.5" PointX="13.75" PointY="12.75" />
+        <AssociationConnector Association="BarberiaModel.FK_Cliente_Localidad" />
+        <AssociationConnector Association="BarberiaModel.FK_Cliente_Sexo" />
+        <AssociationConnector Association="BarberiaModel.FK_Empleado_Localidad" />
+        <AssociationConnector Association="BarberiaModel.FK_Empleado_Sexo" />
+        <AssociationConnector Association="BarberiaModel.FK_TurnoDedicacion_Empleado" />
+        <AssociationConnector Association="BarberiaModel.FK_Ente_Localidad" />
+        <AssociationConnector Association="BarberiaModel.FK_EnteEspecialidad_Ente" />
+        <AssociationConnector Association="BarberiaModel.FK_TurnoDedicacion_Ente" />
+        <AssociationConnector Association="BarberiaModel.FK_User_Ente" />
+        <AssociationConnector Association="BarberiaModel.FK_EnteEspecialidad_Especialidad" />
+        <AssociationConnector Association="BarberiaModel.FK_Servicio_Especialidad" />
+        <AssociationConnector Association="BarberiaModel.FK_Localidad_Partido" />
+        <AssociationConnector Association="BarberiaModel.FK_Partido_Provincia" />
+        <AssociationConnector Association="BarberiaModel.FK_TurnoDedicacion_Servicio" />
+        <AssociationConnector Association="BarberiaModel.FK_TurnoDedicacion_User" />
+        <AssociationConnector Association="BarberiaModel.RolRule" />
+        <AssociationConnector Association="BarberiaModel.UserRol" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

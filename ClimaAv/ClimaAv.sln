@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimaAV", "ClimaAV\ClimaAV.csproj", "{C615D5C5-22F9-4A07-B4C3-00CB72A2D2AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C615D5C5-22F9-4A07-B4C3-00CB72A2D2AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C615D5C5-22F9-4A07-B4C3-00CB72A2D2AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C615D5C5-22F9-4A07-B4C3-00CB72A2D2AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C615D5C5-22F9-4A07-B4C3-00CB72A2D2AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AFC5AA8F-65FD-41F1-9D74-29963736C72D}
+	EndGlobalSection
+EndGlobal

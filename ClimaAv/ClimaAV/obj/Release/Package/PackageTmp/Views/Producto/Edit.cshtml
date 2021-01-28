@@ -1,0 +1,106 @@
+﻿@model Barberia.Models.ProductoModel
+@using Resources
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ORID)
+
+<div class="form-horizontal">
+
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Editar Producto</h4>
+        </div>
+    </div>
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Datos <small>del</small> Producto</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CODE)
+                        @Html.EditorFor(model => model.CODE, new { htmlAttributes = new { @class = "form-control", @maxlength = "5", onkeyup = "Mayuscula(this)" } })
+                        @Html.ValidationMessageFor(model => model.CODE, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descripcion)
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", @maxlength = "100", onkeyup = "Mayuscula(this)" } })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MinimoStock)
+                        @Html.EditorFor(model => model.MinimoStock, new { htmlAttributes = new { @class = "form-control", @maxlength = "100", onkeyup = "Mayuscula(this)" } })
+                        @Html.ValidationMessageFor(model => model.MinimoStock, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group label-floating">
+                        <label class="control-label">@Html.LabelFor(model => model.PrecioCompraM)</label>
+                        @Html.TextBoxFor(model => model.PrecioCompraM, null, new { @class = "form-control", @maxlength = "6", @onkeypress = "return soloNumeros(event);" })
+                        <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.PrecioCompraM)</span>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="form-group label-floating">
+                        <label class="control-label">@Html.LabelFor(model => model.PrecioVentaM)</label>
+                        @Html.TextBoxFor(model => model.PrecioVentaM, null, new { @class = "form-control", @maxlength = "6", @onkeypress = "return soloNumeros(event);" })
+                        <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.PrecioVentaM)</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IdProveedor)
+                        @Html.DropDownList("IdProveedor", new SelectList(ViewBag.Proveedor, "ORID", "Nombre"), "SIN DEFINIR", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdProveedor, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer row">
+
+        <div class="col-md-4">
+            <input type="submit" id="btnEditar" style="width:100%" value="EDITAR" class="btn btn-default" />
+        </div>
+
+    </div>
+
+</div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/smyp.js"></script>
+
+    <script type="text/javascript">
+
+
+        $("#CODE").focus();
+
+
+
+    </script>
+}

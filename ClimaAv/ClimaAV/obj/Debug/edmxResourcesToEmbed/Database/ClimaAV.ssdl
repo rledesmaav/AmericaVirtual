@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AmericaVirtualModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Autor">
+    <Key>
+      <PropertyRef Name="IdAutor" />
+    </Key>
+    <Property Name="IdAutor" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nacionalidad" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Autor2">
+    <Key>
+      <PropertyRef Name="IdAutor" />
+    </Key>
+    <Property Name="IdAutor" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nacionalidad" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ente">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Calle" Type="varchar" MaxLength="100" />
+    <Property Name="Altura" Type="int" />
+    <Property Name="Depto" Type="varchar" MaxLength="3" />
+    <Property Name="Piso" Type="int" />
+    <Property Name="Telefono" Type="varchar" MaxLength="50" />
+    <Property Name="Latitud" Type="varchar" MaxLength="100" />
+    <Property Name="Longitud" Type="varchar" MaxLength="100" />
+    <Property Name="IdLocalidad" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Foto" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EnteEspecialidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEnte" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEspecialidad" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Especialidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estudiante">
+    <Key>
+      <PropertyRef Name="IdLector" />
+    </Key>
+    <Property Name="IdLector" Type="int" Nullable="false" />
+    <Property Name="CI" Type="int" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Direccion" Type="varchar" MaxLength="50" />
+    <Property Name="Carrera" Type="varchar" MaxLength="50" />
+    <Property Name="Edad" Type="int" />
+  </EntityType>
+  <EntityType Name="LibAut">
+    <Key>
+      <PropertyRef Name="IdAutor" />
+      <PropertyRef Name="IdLibro" />
+    </Key>
+    <Property Name="IdAutor" Type="int" Nullable="false" />
+    <Property Name="IdLibro" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Libro">
+    <Key>
+      <PropertyRef Name="IdLibro" />
+    </Key>
+    <Property Name="IdLibro" Type="int" Nullable="false" />
+    <Property Name="Titulo" Type="varchar" MaxLength="50" />
+    <Property Name="Editorial" Type="varchar" MaxLength="50" />
+    <Property Name="Area" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Localidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdPartido" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CodigoPostal" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Partido">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="IdProvincia" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Prestamo">
+    <Key>
+      <PropertyRef Name="IdLector" />
+      <PropertyRef Name="IdLibro" />
+      <PropertyRef Name="FechaPrestamo" />
+    </Key>
+    <Property Name="IdLector" Type="int" Nullable="false" />
+    <Property Name="IdLibro" Type="int" Nullable="false" />
+    <Property Name="FechaPrestamo" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="FechaDevolucion" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Devuelto" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Provincia">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RolID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolRule">
+    <Key>
+      <PropertyRef Name="RuleId" />
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RuleId" Type="int" Nullable="false" />
+    <Property Name="RolID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Definicion" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PasswordHash" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Telefono" Type="varchar" MaxLength="30" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="Foto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdEnte" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRol">
+    <Key>
+      <PropertyRef Name="RolID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="RolID" Type="bigint" Nullable="false" />
+    <Property Name="UserID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Ente_Localidad">
+    <End Role="Localidad" Type="Self.Localidad" Multiplicity="1" />
+    <End Role="Ente" Type="Self.Ente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Ente">
+        <PropertyRef Name="IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnteEspecialidad_Ente">
+    <End Role="Ente" Type="Self.Ente" Multiplicity="1" />
+    <End Role="EnteEspecialidad" Type="Self.EnteEspecialidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="EnteEspecialidad">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnteEspecialidad_Especialidad">
+    <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+    <End Role="EnteEspecialidad" Type="Self.EnteEspecialidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="EnteEspecialidad">
+        <PropertyRef Name="IdEspecialidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LibAut_Autor">
+    <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
+    <End Role="LibAut" Type="Self.LibAut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autor">
+        <PropertyRef Name="IdAutor" />
+      </Principal>
+      <Dependent Role="LibAut">
+        <PropertyRef Name="IdAutor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LibAut_Libro">
+    <End Role="Libro" Type="Self.Libro" Multiplicity="1" />
+    <End Role="LibAut" Type="Self.LibAut" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libro">
+        <PropertyRef Name="IdLibro" />
+      </Principal>
+      <Dependent Role="LibAut">
+        <PropertyRef Name="IdLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Localidad_Partido">
+    <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+    <End Role="Localidad" Type="Self.Localidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partido">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Localidad">
+        <PropertyRef Name="IdPartido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partido_Provincia">
+    <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+    <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provincia">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Partido">
+        <PropertyRef Name="IdProvincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prestamo_Estudiante">
+    <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="1" />
+    <End Role="Prestamo" Type="Self.Prestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estudiante">
+        <PropertyRef Name="IdLector" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="IdLector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prestamo_Libro">
+    <End Role="Libro" Type="Self.Libro" Multiplicity="1" />
+    <End Role="Prestamo" Type="Self.Prestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libro">
+        <PropertyRef Name="IdLibro" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="IdLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolRule_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="RolRule" Type="Self.RolRule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="RolID" />
+      </Principal>
+      <Dependent Role="RolRule">
+        <PropertyRef Name="RolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolRule_Rule">
+    <End Role="Rule" Type="Self.Rule" Multiplicity="1" />
+    <End Role="RolRule" Type="Self.RolRule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolRule">
+        <PropertyRef Name="RuleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Ente">
+    <End Role="Ente" Type="Self.Ente" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="UserRol" Type="Self.UserRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="RolID" />
+      </Principal>
+      <Dependent Role="UserRol">
+        <PropertyRef Name="RolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRol_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRol" Type="Self.UserRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserRol">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AmericaVirtualModelStoreContainer">
+    <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Autor2" EntityType="Self.Autor2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ente" EntityType="Self.Ente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EnteEspecialidad" EntityType="Self.EnteEspecialidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estudiante" EntityType="Self.Estudiante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LibAut" EntityType="Self.LibAut" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Libro" EntityType="Self.Libro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Localidad" EntityType="Self.Localidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partido" EntityType="Self.Partido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prestamo" EntityType="Self.Prestamo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolRule" EntityType="Self.RolRule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rule" EntityType="Self.Rule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRol" EntityType="Self.UserRol" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ente_Localidad" Association="Self.FK_Ente_Localidad">
+      <End Role="Localidad" EntitySet="Localidad" />
+      <End Role="Ente" EntitySet="Ente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnteEspecialidad_Ente" Association="Self.FK_EnteEspecialidad_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="EnteEspecialidad" EntitySet="EnteEspecialidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnteEspecialidad_Especialidad" Association="Self.FK_EnteEspecialidad_Especialidad">
+      <End Role="Especialidad" EntitySet="Especialidad" />
+      <End Role="EnteEspecialidad" EntitySet="EnteEspecialidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LibAut_Autor" Association="Self.FK_LibAut_Autor">
+      <End Role="Autor" EntitySet="Autor" />
+      <End Role="LibAut" EntitySet="LibAut" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LibAut_Libro" Association="Self.FK_LibAut_Libro">
+      <End Role="Libro" EntitySet="Libro" />
+      <End Role="LibAut" EntitySet="LibAut" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Localidad_Partido" Association="Self.FK_Localidad_Partido">
+      <End Role="Partido" EntitySet="Partido" />
+      <End Role="Localidad" EntitySet="Localidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partido_Provincia" Association="Self.FK_Partido_Provincia">
+      <End Role="Provincia" EntitySet="Provincia" />
+      <End Role="Partido" EntitySet="Partido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prestamo_Estudiante" Association="Self.FK_Prestamo_Estudiante">
+      <End Role="Estudiante" EntitySet="Estudiante" />
+      <End Role="Prestamo" EntitySet="Prestamo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prestamo_Libro" Association="Self.FK_Prestamo_Libro">
+      <End Role="Libro" EntitySet="Libro" />
+      <End Role="Prestamo" EntitySet="Prestamo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolRule_Rol" Association="Self.FK_RolRule_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolRule" EntitySet="RolRule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolRule_Rule" Association="Self.FK_RolRule_Rule">
+      <End Role="Rule" EntitySet="Rule" />
+      <End Role="RolRule" EntitySet="RolRule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Ente" Association="Self.FK_User_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRol_Rol" Association="Self.FK_UserRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="UserRol" EntitySet="UserRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRol_User" Association="Self.FK_UserRol_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRol" EntitySet="UserRol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

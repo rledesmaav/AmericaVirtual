@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Barberia.Models.UserIndex>
+@using Resources
+@using System.Configuration
+
+@{
+    ViewBag.Title = Resources.Usuarios;
+}
+
+<section class="content-header">
+    <h2 style="color:#3c8dbc" class="box-title">
+        <i class="fa fa-user"></i>
+        @ViewBag.Title
+        <button id="CrearUsuario" type="button" class="btn btn-primary">Crear Usuario</button>
+    </h2>
+</section>
+
+
+<section class="content">
+
+    <div class="row">
+
+        @*<div class="form-group col-md-4">
+                @Html.Label("Ente")
+                @Html.DropDownList("IdEnte", new SelectList(ViewBag.Entes, "ORID", "Descripcion"), "SELECCIONAR...", new { @class = "form-control" } )
+            </div>*@
+
+        <div class="form-group col-md-6">
+            @Html.Label("Usuario")
+            @Html.TextBox("User", null, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.CheckBox("Activo", new { @checked = true })
+            @Html.Label("Usuarios activos")
+        </div>
+
+    </div>
+
+    <div id="usuarios">
+
+        @Html.Partial("_Tabla", Model)
+
+    </div>
+
+</section>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+
+        $("#CrearUsuario").click(function () {
+            //alert("Handler for .click() called.");
+            var url = '@Url.Action("Create", "User")';
+            window.location.href = url;
+
+        });
+
+        //var txtBox = document.getElementById("User");
+        //if (txtBox != null) txtBox.focus();
+
+
+        $(document).ready(function () {
+            $("#User").focus();
+        });
+
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "ordering": false,
+                "paging": false
+                //'iDisplayLength': 100
+            });
+        });
+
+
+
+        $("#User").on('keyup', function () {
+
+            Buscar();
+        });
+
+        $("#Activo").change(function () {
+
+            Buscar();
+        });
+
+        function Buscar() {
+
+            //var ente = document.getElementById('IdEnte').value;
+            var user = document.getElementById('User').value;
+            var activo = document.getElementById('Activo').checked;
+
+            var _url = '@Url.Action("GetTabla", "User")' + '?user=' + user + '&activo=' + activo;
+
+            $.ajax({
+                url: _url,
+                type: 'get',
+                success: function (response) {
+
+                    $('#usuarios').html(response);
+
+                    $(function () {
+                        $("#example1").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                            //'iDisplayLength': 100
+                        });
+                    });
+                }
+            });
+        }
+
+</script>
+}

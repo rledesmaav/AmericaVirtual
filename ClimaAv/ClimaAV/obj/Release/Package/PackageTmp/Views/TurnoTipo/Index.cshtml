@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Barberia.Database.TurnoTipo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CODE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequiereValidacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BajaLogica)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CODE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequiereValidacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BajaLogica)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ORID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ORID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ORID })
+        </td>
+    </tr>
+}
+
+</table>

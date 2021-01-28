@@ -1,0 +1,618 @@
+﻿@model Barberia.Models.VentaModel
+@using Resources
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Caja Registradora</h4>
+        </div>
+    </div>
+
+
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseVentas"
+                aria-expanded="false" aria-controls="multiCollapseVentas">
+            VENTAS
+        </button>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseCompras"
+                aria-expanded="false" aria-controls="multiCollapseCompras">
+            COMPRAS
+        </button>
+
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse"
+                aria-expanded="false" aria-controls="multiCollapseVentas multiCollapseCompras">
+            Registradora Abierta
+        </button>
+    </p>
+    <div class="row">
+        <div class="card card-body">
+            @*class="col"*@
+            <div class="collapse multi-collapse" id="multiCollapseVentas">
+                <div id="IndexDeVentas">
+                    @Html.Partial("_IndexVentas")
+                </div>
+
+            </div>
+
+            <div class="collapse multi-collapse" id="multiCollapseCompras">
+                <div id="IndexDeVentas">
+                    @Html.Partial("_IndexCompras")
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+
+        $(function () {
+            $("#ventasLista").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "ordering": false,
+                "paging": false
+            });
+        });
+
+        $(document).ready(function () {
+            $('#Numero').focus();
+        });
+
+        $(document).on('change', '#IdProducto', function () {
+        var producto = $(this).val();
+        var _url = '@Url.Action("ObtenerPrecioUnitarioProductoVenta")' + '?producto=' + producto;
+        $.ajax({
+        url: _url,
+        type: 'get',
+        success: function (response) {
+        $('#PrecioM').val(response);
+        }
+        })
+        CalculoNumerosDetalleVenta();
+        });
+
+        $(document).on('change', '#IdProductoDC', function () {
+        var producto = $(this).val();
+        var _url = '@Url.Action("ObtenerPrecioUnitarioProductoCompra")' + '?producto=' + producto;
+        $.ajax({
+        url: _url,
+        type: 'get',
+        success: function (response) {
+        $('#PrecioMDC').val(response);
+        }
+        })
+        CalculoNumerosDetalleCompra();
+        });
+
+        $(document).on('change', '#IdServicio', function () {
+
+        var servicio = $('#IdServicio').val();
+        var _url = '@Url.Action("ObtenerPrecioServicioVenta")' + '?servicio=' + servicio;
+        $.ajax({
+        url: _url,
+        type: 'get',
+        success: function (response) {
+
+            $('#MontoM').val(response);
+        }
+        })
+
+        });
+
+    function empty(data) {
+        if (typeof (data) == 'number' || typeof (data) == 'boolean') {
+            return false;
+        }
+        if (typeof (data) == 'undefined' || data === null) {
+            return true;
+        }
+        if (typeof (data.length) != 'undefined') {
+            return data.length == 0;
+        }
+        var count = 0;
+        for (var i in data) {
+            if (data.hasOwnProperty(i)) {
+                count++;
+            }
+        }
+        return count == 0;
+    }
+    function CalculoNumerosDetalleVenta() {
+        var producto = $('#IdProducto').val();
+        var cantidad = $('#Cantidad').val();
+        var descuento = $('#DescuentoM').val();
+
+
+        if (empty(cantidad)) {
+            $('#Cantidad').val(0)
+            $('#MontoM').val(0)
+            cantidad = '0';
+        }
+        if (empty(descuento)) {
+            $('#DescuentoM').val(0)
+            descuento = '0';
+        }
+
+        var _url = '@Url.Action("CalculoNumerosDetalleVenta")' + '?producto=' + producto + '&cantidad=' + cantidad + '&descuento=' + descuento;
+        $.ajax({
+        url: _url,
+        type: 'get',
+        success: function (response) {
+        $('#MontoM').val(response);
+        }
+        })
+
+    }
+    function CalculoNumerosDetalleCompra() {
+        var producto = $('#IdProductoDC').val();
+        var cantidad = $('#CantidadDC').val();
+        var descuento = $('#DescuentoMDC').val();
+
+
+        if (empty(cantidad)) {
+            $('#CantidadDC').val(0)
+            $('#MontoMDC').val(0)
+            cantidad = '0';
+        }
+        if (empty(descuento)) {
+            $('#DescuentoMDC').val(0)
+            descuento = '0';
+        }
+
+        var _url = '@Url.Action("CalculoNumerosDetalleCompra")' + '?producto=' + producto + '&cantidad=' + cantidad + '&descuento=' + descuento;
+        $.ajax({
+        url: _url,
+        type: 'get',
+        success: function (response) {
+        $('#MontoMDC').val(response);
+        }
+        })
+
+    }
+    function AddDetalleVentaModal(venta) {
+
+            $.ajax({
+                url: '@Url.Action("AltaDetalleVenta", "Registradora")' + '?venta=' + venta,
+                contentType: "application/json;",
+                type: 'get',
+                success: function (data) {
+                    $('#DetalleVentaModal').html(data);
+                    $('#ModalDetalleVenta').modal('show');
+
+                }
+            });
+    }
+    function DelDetalleVentaModal(detalleventa, venta) {
+
+        $.ajax({
+            url: '@Url.Action("DeleteDetalleVenta", "Registradora")' + '?id=' + detalleventa,
+            contentType: "application/json;",
+            type: 'get',
+            success: function (data) {
+
+            }
+        });
+        ListaDetalleVentaModal(venta);
+        RefrescoFiltro(venta);
+    }
+    function DelDetalleCompraModal(detallecompra, compra) {
+
+        $.ajax({
+            url: '@Url.Action("DeleteDetalleCompra", "Registradora")' + '?id=' + detallecompra,
+            contentType: "application/json;",
+            type: 'get',
+            success: function (data) {
+
+            }
+        });
+        ListaDetalleCompraModal(compra);
+        RefrescoFiltroCompra(compra);
+    }
+    function UpdateEstadoVenta(venta) {
+
+            $.ajax({
+                url: '@Url.Action("OperacionesVenta", "Registradora")' + '?venta=' + venta,
+                contentType: "application/json;",
+                type: 'get',
+                success: function (data) {
+                    $('#OperacionesModal').html(data);
+                    $('#ModalOperaciones').modal('show');
+
+                }
+            });
+        RefrescoFiltro(venta);
+        }
+    function AddDetalleCompraModal(compra) {
+
+            $.ajax({
+                url: '@Url.Action("AltaDetalleCompra", "Registradora")' + '?compra=' + compra,
+                contentType: "application/json;",
+                type: 'get',
+                success: function (data) {
+                    $('#DetalleCompraModal').html(data);
+                    $('#ModalDetalleCompra').modal('show');
+                }
+            });
+        }
+    function AddVentaModal() {
+
+            $.ajax({
+                url: '@Url.Action("AltaVenta", "Registradora")',
+                contentType: "application/json;",
+                type: 'get',
+                success: function (data) {
+                    $('#VentaModal').html(data);
+                    $('#ModalVenta').modal('show');
+                    //$('#ModalAccion').find("#IdRecursoHumano").val($("#IdRecursoHumano option:first").val());
+                    //$("input[name=tipoacciones][value='a8ecc2e1-c9b3-4896-9696-dc7cbe5bae4d']").prop("checked", true);
+                }
+            });
+        }
+    function AddCompraModal() {
+
+            $.ajax({
+                url: '@Url.Action("AltaCompra", "Registradora")',
+                contentType: "application/json;",
+                type: 'get',
+                success: function (data) {
+                    $('#CompraModal').html(data);
+                    $('#ModalCompra').modal('show');
+
+                }
+            });
+        }
+    function ListaDetalleVentaModal(venta) {
+
+            $.ajax({
+                url: '@Url.Action("ListadoDetalleVenta", "Registradora")' + '?venta=' + venta,
+                contentType: "application/json;",
+                type: 'get',
+                success: function (data) {
+                    $('#ListaDetalleVenta').show('true');
+                    $('#ListaDetalleVenta').html(data);
+                    $(function () {
+                        $("#ventasLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+                }
+            });
+    }
+    function ListaDetalleCompraModal(compra) {
+
+            $.ajax({
+                url: '@Url.Action("ListadoDetalleCompra", "Registradora")' + '?compra=' + compra,
+                contentType: "application/json;",
+                type: 'get',
+                success: function (data) {
+                    $('#ListaDetalleCompra').show('true');
+                    $('#ListaDetalleCompra').html(data);
+                    $(function () {
+                        $("#comprasLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+                }
+            });
+    }
+    function ProcesarFiltro() {
+
+            var vent = {};
+
+            $('.vent').each(function () {
+                var name = $(this).attr('id');
+                vent[name] = $(this).val();
+            });
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(vent),
+                url: '@Url.Action("VentaLista", "Registradora")',
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+                    $('#ListaDetalleVenta').hide('true');
+                    $('#ventas').html(data);
+
+                    $(function () {
+                        $("#ventasLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+    }
+    function RefrescoFiltro(venta) {
+
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(venta),
+                url: '@Url.Action("RefreshVenta", "Registradora")' + '?id=' + venta,
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+                    $('#ListaDetalleCompra').hide('true');
+                    $('#ventas').html(data);
+
+                    $(function () {
+                        $("#ventasLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+    }
+    function RefrescoFiltroCompra(compra) {
+
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(compra),
+                url: '@Url.Action("RefreshCompra", "Registradora")' + '?id=' + compra,
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+
+                    $('#compras').html(data);
+
+                    $(function () {
+                        $("#comprasLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+    }
+    function ProcesarOperacionesVenta() {
+
+        var cventov = {};
+
+        $('.cventov').each(function () {
+                var name = $(this).attr('id');
+            cventov[name] = $(this).val();
+            });
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(cventov),
+                url: '@Url.Action("ProcesarVentaOperaciones", "Registradora")',
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+                    //$('#ListaDetalleVenta').hide('true');
+                    $('#ModalOperaciones').modal('hide');
+                    $('#ventas').html(data);
+
+
+                    RefrescoFiltro($("#IdVentaOV").val());
+                    //$(function () {
+                    //    $("#IdVentaOV").DataTable({
+                    //        "responsive": true,
+                    //        "autoWidth": false,
+                    //        "ordering": false,
+                    //        "paging": false
+                    //    });
+                    //    document.body.className = "";
+                    //});
+
+                }
+            });
+    }
+    function ProcesarFiltroCompras() {
+
+            var comp = {};
+
+            $('.comp').each(function () {
+                var name = $(this).attr('id');
+                comp[name] = $(this).val();
+            });
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(comp),
+                url: '@Url.Action("CompraLista", "Registradora")',
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+                    $('#ListaDetalleCompra').hide('true');
+                    $('#compras').html(data);
+
+                    $(function () {
+                        $("#comprasLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+
+
+        }
+    function ProcesarDetalleVenta() {
+
+            var detalleventa = {};
+            var valid = true;
+
+            $('.detvent').each(function () {
+                var name = $(this).attr('id');
+                detalleventa[name] = $(this).val();
+            });
+
+
+        var venta = $('#IdVenta').val();
+            if (!valid) {
+                CartelitoError('Verifique los datos');
+                return;
+            }
+
+            $.ajax({
+                data: JSON.stringify(detalleventa),
+                url: '@Url.Action("ProcesarDetalleVenta", "Registradora")',
+                contentType: "application/json;",
+                dataType: "json",
+                type: 'post',
+                success: function (data) {
+                    $('#ModalDetalleVenta').modal('hide');
+                    CartelitoOk('El detalle fue cargado correctamente');
+
+                }
+            });
+        ListaDetalleVentaModal(venta);
+        RefrescoFiltro(venta);
+    }
+    function ProcesarDetalleCompra() {
+
+            var detallecompra = {};
+            var valid = true;
+
+            $('.detcomp').each(function () {
+                var name = $(this).attr('id');
+                detallecompra[name] = $(this).val();
+            });
+        var compra = $('#IdCompra').val();
+            if (!valid) {
+                CartelitoError('Verifique los datos');
+                return;
+            }
+
+            $.ajax({
+                data: JSON.stringify(detallecompra),
+                url: '@Url.Action("ProcesarDetalleCompra", "Registradora")',
+                contentType: "application/json;",
+                dataType: "json",
+                type: 'post',
+                success: function (data) {
+                    $('#ModalDetalleCompra').modal('hide');
+                    CartelitoOk('El detalle fue cargado correctamente');
+                }
+            });
+        ListaDetalleCompraModal(compra);
+        RefrescoFiltroCompra(compra);
+    }
+    function ProcesarVenta() {
+
+            var cventa = {};
+            var valid = true;
+
+        $('.cvent').each(function () {
+            valid = valid && $(this).valid();
+                var name = $(this).attr('id');
+                cventa[name] = $(this).val();
+            });
+
+            if (!valid) {
+                CartelitoError('Verifique los datos');
+                return;
+            }
+
+            $.ajax({
+                data: JSON.stringify(cventa),
+                url: '@Url.Action("ProcesarVenta", "Registradora")',
+                contentType: "application/json;",
+                dataType: "json",
+                type: 'post',
+                success: function (data) {
+                    //$('#IndexDeVentas').html(data);
+                    $('#ModalVenta').modal('hide');
+                    CartelitoOk('La Venta fue cargada correctamente');
+                }
+            });
+    }
+    function ProcesarCompra() {
+
+            var ccomp = {};
+            var valid = true;
+
+            $('.ccomp').each(function () {
+                var name = $(this).attr('id');
+                ccomp[name] = $(this).val();
+            });
+
+            if (!valid) {
+                CartelitoError('Verifique los datos');
+                return;
+            }
+
+            $.ajax({
+                data: JSON.stringify(ccomp),
+                url: '@Url.Action("ProcesarCompra", "Registradora")',
+                contentType: "application/json;",
+                dataType: "json",
+                type: 'post',
+                success: function (data) {
+                    //$('#IndexDeVentas').html(data);
+                    $('#ModalCompra').modal('hide');
+                    CartelitoOk('La Compra fue cargada correctamente');
+                }
+            });
+    }
+    function CierroServicioVenta() {
+        $("#collapseTwo").collapse('hide');
+        $('#TipoDetalle').val('Producto');
+        $('#MontoM').val(0)
+        $('#PrecioM').val(0)
+        $('#PrecioM').val(0)
+        $('#DescuentoM').val(0)
+        $('#DescuentoM').prop('readOnly', false);
+        $('#Cantidad').prop('readOnly', false);
+        }
+    function CierroProductoVenta() {
+
+        $("#collapseOne").collapse('hide');
+        $('#TipoDetalle').val('Servicio');
+        $('#MontoM').val(0)
+        $('#PrecioM').val(0)
+        $('#Cantidad').val(0)
+        $('#DescuentoM').val(0)
+        $('#DescuentoM').prop('readOnly', true);
+        $('#Cantidad').prop('readOnly', true);
+        }
+    function GenerarExcel() {
+        $('#ventasLista').table2excel({ name: "Prueba", filename: "Ventas-Excel" });
+    }
+</script>
+}

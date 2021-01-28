@@ -1,0 +1,123 @@
+﻿@model Barberia.Models.ProveedorModel
+@using Resources
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Proveedores</h4>
+        </div>
+    </div>
+
+    <div class="row">
+
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CODE)
+                @Html.EditorFor(model => model.CODE, new { htmlAttributes = new { @class = "form-control proveedor", @maxlength = "100", onkeyup = "Mayuscula(this)" } })
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control proveedor", @maxlength = "100", onkeyup = "Mayuscula(this)" } })
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.NombreContacto)
+                @Html.EditorFor(model => model.NombreContacto, new { htmlAttributes = new { @class = "form-control proveedor", @maxlength = "100", onkeyup = "Mayuscula(this)" } })
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="ProcesarFiltro()" class="btn btn-primary form-control">Buscar</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="location.href='@Url.Action("Create", "Proveedor" )'" class="btn btn-primary form-control">Crear</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="GenerarExcel()" class="btn btn-primary form-control">Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="Proveedores">
+        @Html.Partial("_ProveedorLista", new List<Barberia.Models.ProveedorListaModel>())
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(function () {
+            $("#ProveedoresLista").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "ordering": false,
+                "paging": false
+            });
+        });
+
+        $(document).ready(function () {
+            $('#Nombre').focus();
+        });
+
+        function ProcesarFiltro() {
+
+            var proveedor = {};
+
+            $('.proveedor').each(function () {
+                var name = $(this).attr('id');
+                proveedor[name] = $(this).val();
+            });
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(proveedor),
+                url: '@Url.Action("ProveedorLista", "Proveedor")',
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+
+                    $('#Proveedores').html(data);
+
+                    $(function () {
+                        $("#ProveedoresLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+        }
+
+        function GenerarExcel() {
+            $('#ProveedoresLista').table2excel({ name: "Prueba", filename: "Proveedores-Excel" });
+        }
+
+    </script>
+}

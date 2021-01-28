@@ -1,0 +1,138 @@
+﻿@model Barberia.Models.ClienteModel
+@using Resources
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Crear Cliente</h4>
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Datos <small>de</small> Cliente</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Apellido)
+                            @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control", @maxlength = "50", onkeyup = "Mayuscula(this)" } })
+                            @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nombre)
+                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @maxlength = "100", onkeyup = "Mayuscula(this)" } })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdSexo)
+                            @Html.DropDownList("IdSexo", new SelectList(ViewBag.Sexos, "ORID", "Nombre"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdSexo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nacimiento)
+                            @Html.EditorFor(model => model.Nacimiento, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.Nacimiento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Ubicación</h3>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdLocalidad)
+                            @Html.DropDownList("IdLocalidad", new SelectList(ViewBag.Localidades, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdLocalidad, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Contacto</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Telefono)
+                            @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                            @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Movil)
+                            @Html.EditorFor(model => model.Movil, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                            @Html.ValidationMessageFor(model => model.Movil, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Correo)
+                            @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control", @maxlength = "100" } })
+                            @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer row">
+
+            <div class="col-md-4">
+                <input type="submit" id="btnCrear" style="width:100%" value="CREAR" class="btn btn-default" />
+            </div>
+
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/smyp.js"></script>
+
+    <script type="text/javascript">
+
+
+        $("#Apellido").focus();
+
+
+
+    </script>
+}

@@ -1,0 +1,138 @@
+﻿@model Barberia.Models.StockModel
+@using Resources
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Stock</h4>
+        </div>
+    </div>
+
+    <div class="row">
+
+        @*<div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Numero)
+                    @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control persona", @maxlength = "12", @onkeypress = "return SoloNumeros()" } })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Apellido)
+                    @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control persona", @maxlength = "50", onkeyup = "Mayuscula(this)" } })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nombre)
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control persona", @maxlength = "100", onkeyup = "Mayuscula(this)" } })
+                </div>
+            </div>*@
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdTipoOperacion)
+                @Html.DropDownList("IdTipoOperacion", new SelectList(ViewBag.TipoOperaciones, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control stockcito" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdProducto)
+                @Html.DropDownList("IdProducto", new SelectList(ViewBag.Productos, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control stockcito" })
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="ProcesarFiltro()" class="btn btn-primary form-control">Buscar</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="location.href='@Url.Action("Create", "Stock" )'" class="btn btn-primary form-control">Crear Movimiento</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="GenerarExcel()" class="btn btn-primary form-control">Excel</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="stocks">
+        @Html.Partial("_StockLista", new List<Barberia.Models.StockListaModel>())
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(function () {
+            $("#stocksLista").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "ordering": false,
+                "paging": false
+            });
+        });
+
+        $(document).ready(function () {
+            $('#IdProducto').focus();
+        });
+
+        function ProcesarFiltro() {
+
+            var stockcito = {};
+
+            $('.stockcito').each(function () {
+                var name = $(this).attr('id');
+                stockcito[name] = $(this).val();
+            });
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(stockcito),
+                url: '@Url.Action("StockLista", "Stock")',
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+
+                    $('#stocks').html(data);
+
+                    $(function () {
+                        $("#stocksLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+        }
+
+        function GenerarExcel() {
+            $('#stocksLista').table2excel({ name: "Prueba", filename: "Stock-Excel" });
+        }
+
+
+   
+    
+
+    </script>
+
+}

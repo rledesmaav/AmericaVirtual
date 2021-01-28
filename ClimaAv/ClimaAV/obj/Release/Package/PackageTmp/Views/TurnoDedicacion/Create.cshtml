@@ -1,0 +1,245 @@
+﻿@model Barberia.Models.TurnoDedicacionModel
+@using Resources
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="row" style="padding-bottom:20px">
+            <div class="col-md-12">
+                <h4>Crear Dedicación</h4>
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Datos</h3>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdEnte)
+                            @Html.DropDownList("IdEnte", new SelectList(ViewBag.Entes, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdEnte, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdEspecialidad)
+                            @Html.DropDownList("IdEspecialidad", new SelectList(ViewBag.Empleados, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdEspecialidad, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdServicio)
+                            @Html.DropDownList("IdServicio", new SelectList(ViewBag.Empleados, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdServicio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdEmpleado)
+                            @Html.DropDownList("IdEmpleado", new SelectList(ViewBag.Empleados, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdEmpleado, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiaSemana)
+                            @Html.DropDownList("DiaSemana", new SelectList(ViewBag.Dias, "Id", "Dia"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DiaSemana, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Desde)
+                            @Html.TextBoxFor(model => model.Desde, "", new { @type = "time", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Desde, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Hasta)
+                            @Html.TextBoxFor(model => model.Hasta, "", new { @type = "time", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Hasta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DuracionBloqueHorario)
+                            @Html.EditorFor(model => model.DuracionBloqueHorario, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DuracionBloqueHorario, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AtencionesPorBloqueHorario)
+                            @Html.EditorFor(model => model.AtencionesPorBloqueHorario, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AtencionesPorBloqueHorario, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TopeAtencionesDiarias)
+                            @Html.EditorFor(model => model.TopeAtencionesDiarias, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TopeAtencionesDiarias, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EsEspecial)
+                            @Html.CheckBoxFor(model => model.EsEspecial, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer row">
+
+            <div class="col-md-4">
+                <input type="submit" id="btnCrear" style="width:100%" value="CREAR" class="btn btn-default" />
+            </div>
+
+            <div class="col-md-4">
+                <input onclick="window.location='@Url.Action("Index")';" style="width:100%" value="VOLVER" class="btn btn-default" />
+            </div>
+
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/smyp.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#IdEnte").focus();
+        });
+
+        $('form').submit(function (e) {
+
+            var desde = $('#Desde').val();
+            var hasta = $('#Hasta').val();
+            if (desde >= hasta) {
+                alert("Introducir correctamente valores desde / hasta");
+                return;
+            }
+
+            var valid = true;
+            $("form").each(function () {
+                valid = valid && $(this).valid();
+            }); if (!valid) return;
+
+            document.getElementById("btnCrear").value = "Enviando...";
+            document.getElementById("btnCrear").disabled = true;
+
+            return true;
+
+        });
+
+        $('#IdEnte').change(function () {
+            var ente = $(this).val();
+            var _url = '@Url.Action("ObtenerEspecialidades")' + '?ente=' + ente;
+            $.ajax({
+                url: _url,
+                type: 'get',
+                success: function (response) {
+                    $('#IdEspecialidad').html(response);
+                    var esp = $('#IdEspecialidad').val();
+                    var _url = '@Url.Action("ObtenerServicios")' + '?especialidad=' + esp;
+                    $.ajax({
+                        url: _url,
+                        type: 'get',
+                        success: function (response) {
+                            $('#IdServicio').html(response);
+                            var servicio = $('#IdServicio').val();
+                            var ente = $('#IdEnte').val();
+                            var _url = '@Url.Action("ObtenerEmpleados")' + '?ente=' + ente + '&servicio=' + servicio;
+                            $.ajax({
+                                url: _url,
+                                type: 'get',
+                                success: function (response) {
+                                    $('#IdEmpleado').html(response);
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+
+        })
+
+        $('#IdEspecialidad').change(function () {
+            var esp = $(this).val();
+            var _url = '@Url.Action("ObtenerServicios")' + '?especialidad=' + esp;
+            $.ajax({
+                url: _url,
+                type: 'get',
+                success: function (response) {
+                    $('#IdServicio').html(response);
+                    var servicio = $('#IdServicio').val();
+                    var ente = $('#IdEnte').val();
+                    var _url = '@Url.Action("ObtenerEmpleados")' + '?ente=' + ente + '&servicio=' + servicio;
+                    $.ajax({
+                        url: _url,
+                        type: 'get',
+                        success: function (response) {
+                            $('#IdEmpleado').html(response);
+                        }
+                    })
+                }
+            })
+
+        })
+
+        @*$('#IdServicio').change(function () {
+
+            var ente = $('#IdEnte').val();
+            var servicio = $(this).val();
+
+            var _url = '@Url.Action("ObtenerEmpleados")' + '?ente=' + ente + '&servicio=' + servicio;
+            $.ajax({
+                url: _url,
+                type: 'get',
+                success: function (response) {
+                    $('#IdEmpleado').html(response);
+                }
+            })
+
+        })*@
+    </script>
+}

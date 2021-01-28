@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BarberiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BarberiaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Caja" EntityType="BarberiaModel.Caja" />
+    <EntitySet Name="Cliente" EntityType="BarberiaModel.Cliente" />
+    <EntitySet Name="ClienteTurno" EntityType="BarberiaModel.ClienteTurno" />
+    <EntitySet Name="Compra" EntityType="BarberiaModel.Compra" />
+    <EntitySet Name="CompraEstado" EntityType="BarberiaModel.CompraEstado" />
+    <EntitySet Name="DetalleCompra" EntityType="BarberiaModel.DetalleCompra" />
+    <EntitySet Name="DetalleVenta" EntityType="BarberiaModel.DetalleVenta" />
+    <EntitySet Name="DiaNoLaborable" EntityType="BarberiaModel.DiaNoLaborable" />
+    <EntitySet Name="Empleado" EntityType="BarberiaModel.Empleado" />
+    <EntitySet Name="EmpleadoEspecialidad" EntityType="BarberiaModel.EmpleadoEspecialidad" />
+    <EntitySet Name="Ente" EntityType="BarberiaModel.Ente" />
+    <EntitySet Name="EnteEmpleado" EntityType="BarberiaModel.EnteEmpleado" />
+    <EntitySet Name="EnteEspecialidad" EntityType="BarberiaModel.EnteEspecialidad" />
+    <EntitySet Name="Especialidad" EntityType="BarberiaModel.Especialidad" />
+    <EntitySet Name="Localidad" EntityType="BarberiaModel.Localidad" />
+    <EntitySet Name="Partido" EntityType="BarberiaModel.Partido" />
+    <EntitySet Name="Producto" EntityType="BarberiaModel.Producto" />
+    <EntitySet Name="Proveedor" EntityType="BarberiaModel.Proveedor" />
+    <EntitySet Name="Provincia" EntityType="BarberiaModel.Provincia" />
+    <EntitySet Name="Rol" EntityType="BarberiaModel.Rol" />
+    <EntitySet Name="Rule" EntityType="BarberiaModel.Rule" />
+    <EntitySet Name="Servicio" EntityType="BarberiaModel.Servicio" />
+    <EntitySet Name="Sexo" EntityType="BarberiaModel.Sexo" />
+    <EntitySet Name="Stock" EntityType="BarberiaModel.Stock" />
+    <EntitySet Name="TipoComprobante" EntityType="BarberiaModel.TipoComprobante" />
+    <EntitySet Name="TipoOperacion" EntityType="BarberiaModel.TipoOperacion" />
+    <EntitySet Name="Turno" EntityType="BarberiaModel.Turno" />
+    <EntitySet Name="TurnoDedicacion" EntityType="BarberiaModel.TurnoDedicacion" />
+    <EntitySet Name="TurnoEstado" EntityType="BarberiaModel.TurnoEstado" />
+    <EntitySet Name="TurnoTipo" EntityType="BarberiaModel.TurnoTipo" />
+    <EntitySet Name="User" EntityType="BarberiaModel.User" />
+    <EntitySet Name="Venta" EntityType="BarberiaModel.Venta" />
+    <EntitySet Name="VentaEstado" EntityType="BarberiaModel.VentaEstado" />
+    <AssociationSet Name="FK_Cliente_Localidad" Association="BarberiaModel.FK_Cliente_Localidad">
+      <End Role="Localidad" EntitySet="Localidad" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_Sexo" Association="BarberiaModel.FK_Cliente_Sexo">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empleado_Localidad" Association="BarberiaModel.FK_Empleado_Localidad">
+      <End Role="Localidad" EntitySet="Localidad" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empleado_Sexo" Association="BarberiaModel.FK_Empleado_Sexo">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TurnoDedicacion_Empleado" Association="BarberiaModel.FK_TurnoDedicacion_Empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="TurnoDedicacion" EntitySet="TurnoDedicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ente_Localidad" Association="BarberiaModel.FK_Ente_Localidad">
+      <End Role="Localidad" EntitySet="Localidad" />
+      <End Role="Ente" EntitySet="Ente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnteEspecialidad_Ente" Association="BarberiaModel.FK_EnteEspecialidad_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="EnteEspecialidad" EntitySet="EnteEspecialidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TurnoDedicacion_Ente" Association="BarberiaModel.FK_TurnoDedicacion_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="TurnoDedicacion" EntitySet="TurnoDedicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Ente" Association="BarberiaModel.FK_User_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnteEspecialidad_Especialidad" Association="BarberiaModel.FK_EnteEspecialidad_Especialidad">
+      <End Role="Especialidad" EntitySet="Especialidad" />
+      <End Role="EnteEspecialidad" EntitySet="EnteEspecialidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Servicio_Especialidad" Association="BarberiaModel.FK_Servicio_Especialidad">
+      <End Role="Especialidad" EntitySet="Especialidad" />
+      <End Role="Servicio" EntitySet="Servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Localidad_Partido" Association="BarberiaModel.FK_Localidad_Partido">
+      <End Role="Partido" EntitySet="Partido" />
+      <End Role="Localidad" EntitySet="Localidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partido_Provincia" Association="BarberiaModel.FK_Partido_Provincia">
+      <End Role="Provincia" EntitySet="Provincia" />
+      <End Role="Partido" EntitySet="Partido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TurnoDedicacion_Servicio" Association="BarberiaModel.FK_TurnoDedicacion_Servicio">
+      <End Role="Servicio" EntitySet="Servicio" />
+      <End Role="TurnoDedicacion" EntitySet="TurnoDedicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TurnoDedicacion_User" Association="BarberiaModel.FK_TurnoDedicacion_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="TurnoDedicacion" EntitySet="TurnoDedicacion" />
+    </AssociationSet>
+    <AssociationSet Name="RolRule" Association="BarberiaModel.RolRule">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Rule" EntitySet="Rule" />
+    </AssociationSet>
+    <AssociationSet Name="UserRol" Association="BarberiaModel.UserRol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Caja">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="Numero" Type="Int32" Nullable="false" />
+    <Property Name="FechaApertura" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="FechaCierre" Type="DateTime" Precision="7" />
+    <Property Name="Observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MontoTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="Numero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nacimiento" Type="DateTime" Precision="0" />
+    <Property Name="Movil" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioApp" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdLocalidad" Type="Guid" />
+    <Property Name="IdSexo" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Localidad" Relationship="BarberiaModel.FK_Cliente_Localidad" FromRole="Cliente" ToRole="Localidad" />
+    <NavigationProperty Name="Sexo" Relationship="BarberiaModel.FK_Cliente_Sexo" FromRole="Cliente" ToRole="Sexo" />
+  </EntityType>
+  <EntityType Name="ClienteTurno">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="Documento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nacimiento" Type="DateTime" Precision="0" />
+    <Property Name="Movil" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioApp" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdLocalidad" Type="Guid" />
+    <Property Name="IdSexo" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Compra">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="IdProveedor" Type="Guid" />
+    <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+    <Property Name="IdTipoComprobante" Type="Guid" Nullable="false" />
+    <Property Name="NumeroComprobante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Impuesto" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MontoTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdEstado" Type="Guid" Nullable="false" />
+    <Property Name="IdCaja" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CompraEstado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DetalleCompra">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="IdCompra" Type="Guid" Nullable="false" />
+    <Property Name="IdProducto" Type="Guid" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="IdProveedor" Type="Guid" />
+    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Precio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="IdVenta" Type="Guid" Nullable="false" />
+    <Property Name="IdProducto" Type="Guid" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="IdServicio" Type="Guid" />
+    <Property Name="IdEmpleado" Type="Guid" />
+    <Property Name="IdCliente" Type="Guid" />
+    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Precio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="DiaNoLaborable">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="IdEnte" Type="Guid" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IdEmpleado" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="Documento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nacimiento" Type="DateTime" Precision="0" />
+    <Property Name="Movil" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdLocalidad" Type="Guid" />
+    <Property Name="IdSexo" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Localidad" Relationship="BarberiaModel.FK_Empleado_Localidad" FromRole="Empleado" ToRole="Localidad" />
+    <NavigationProperty Name="Sexo" Relationship="BarberiaModel.FK_Empleado_Sexo" FromRole="Empleado" ToRole="Sexo" />
+    <NavigationProperty Name="TurnoDedicacion" Relationship="BarberiaModel.FK_TurnoDedicacion_Empleado" FromRole="Empleado" ToRole="TurnoDedicacion" />
+  </EntityType>
+  <EntityType Name="EmpleadoEspecialidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="IdEmpleado" Type="Guid" Nullable="false" />
+    <Property Name="IdEspecialidad" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ente">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Altura" Type="Int32" />
+    <Property Name="Depto" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Piso" Type="Int32" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Latitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Longitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdLocalidad" Type="Guid" Nullable="false" />
+    <Property Name="Foto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Localidad" Relationship="BarberiaModel.FK_Ente_Localidad" FromRole="Ente" ToRole="Localidad" />
+    <NavigationProperty Name="EnteEspecialidad" Relationship="BarberiaModel.FK_EnteEspecialidad_Ente" FromRole="Ente" ToRole="EnteEspecialidad" />
+    <NavigationProperty Name="TurnoDedicacion" Relationship="BarberiaModel.FK_TurnoDedicacion_Ente" FromRole="Ente" ToRole="TurnoDedicacion" />
+    <NavigationProperty Name="User" Relationship="BarberiaModel.FK_User_Ente" FromRole="Ente" ToRole="User" />
+  </EntityType>
+  <EntityType Name="EnteEmpleado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="IdEnte" Type="Guid" Nullable="false" />
+    <Property Name="IdEmpleado" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EnteEspecialidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="IdEnte" Type="Guid" Nullable="false" />
+    <Property Name="IdEspecialidad" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Ente" Relationship="BarberiaModel.FK_EnteEspecialidad_Ente" FromRole="EnteEspecialidad" ToRole="Ente" />
+    <NavigationProperty Name="Especialidad" Relationship="BarberiaModel.FK_EnteEspecialidad_Especialidad" FromRole="EnteEspecialidad" ToRole="Especialidad" />
+  </EntityType>
+  <EntityType Name="Especialidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EnteEspecialidad" Relationship="BarberiaModel.FK_EnteEspecialidad_Especialidad" FromRole="Especialidad" ToRole="EnteEspecialidad" />
+    <NavigationProperty Name="Servicio" Relationship="BarberiaModel.FK_Servicio_Especialidad" FromRole="Especialidad" ToRole="Servicio" />
+  </EntityType>
+  <EntityType Name="Localidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdPartido" Type="Guid" Nullable="false" />
+    <Property Name="CodigoPostal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cliente" Relationship="BarberiaModel.FK_Cliente_Localidad" FromRole="Localidad" ToRole="Cliente" />
+    <NavigationProperty Name="Empleado" Relationship="BarberiaModel.FK_Empleado_Localidad" FromRole="Localidad" ToRole="Empleado" />
+    <NavigationProperty Name="Ente" Relationship="BarberiaModel.FK_Ente_Localidad" FromRole="Localidad" ToRole="Ente" />
+    <NavigationProperty Name="Partido" Relationship="BarberiaModel.FK_Localidad_Partido" FromRole="Localidad" ToRole="Partido" />
+  </EntityType>
+  <EntityType Name="Partido">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="IdProvincia" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Localidad" Relationship="BarberiaModel.FK_Localidad_Partido" FromRole="Partido" ToRole="Localidad" />
+    <NavigationProperty Name="Provincia" Relationship="BarberiaModel.FK_Partido_Provincia" FromRole="Partido" ToRole="Provincia" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MinimoStock" Type="Int32" />
+    <Property Name="PrecioCompra" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PrecioVenta" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdProveedor" Type="Guid" />
+  </EntityType>
+  <EntityType Name="Proveedor">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NombreContacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Altura" Type="Int32" />
+    <Property Name="CUIT" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Provincia">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Partido" Relationship="BarberiaModel.FK_Partido_Provincia" FromRole="Provincia" ToRole="Partido" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RolID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Rule" Relationship="BarberiaModel.RolRule" FromRole="Rol" ToRole="Rule" />
+    <NavigationProperty Name="User" Relationship="BarberiaModel.UserRol" FromRole="Rol" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Rule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Definicion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Rol" Relationship="BarberiaModel.RolRule" FromRole="Rule" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="Servicio">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Monto" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="IdEspecialidad" Type="Guid" />
+    <NavigationProperty Name="Especialidad" Relationship="BarberiaModel.FK_Servicio_Especialidad" FromRole="Servicio" ToRole="Especialidad" />
+    <NavigationProperty Name="TurnoDedicacion" Relationship="BarberiaModel.FK_TurnoDedicacion_Servicio" FromRole="Servicio" ToRole="TurnoDedicacion" />
+  </EntityType>
+  <EntityType Name="Sexo">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cliente" Relationship="BarberiaModel.FK_Cliente_Sexo" FromRole="Sexo" ToRole="Cliente" />
+    <NavigationProperty Name="Empleado" Relationship="BarberiaModel.FK_Empleado_Sexo" FromRole="Sexo" ToRole="Empleado" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Entrada" Type="Int32" />
+    <Property Name="Salida" Type="Int32" />
+    <Property Name="IdProducto" Type="Guid" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+    <Property Name="IdTipoOperacion" Type="Guid" Nullable="false" />
+    <Property Name="IdDetalleCompra" Type="Guid" />
+  </EntityType>
+  <EntityType Name="TipoComprobante">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TipoOperacion">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Debe" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Turno">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Registrado" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Confirmado" Type="DateTime" Precision="7" />
+    <Property Name="Presente" Type="Boolean" />
+    <Property Name="FechaPresente" Type="DateTime" Precision="7" />
+    <Property Name="IdCliente" Type="Guid" Nullable="false" />
+    <Property Name="IdDedicacion" Type="Guid" Nullable="false" />
+    <Property Name="IdTurnoTipo" Type="Guid" Nullable="false" />
+    <Property Name="IdTurnoEstado" Type="Guid" Nullable="false" />
+    <Property Name="SobreTurno" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TurnoDedicacion">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="IdEnte" Type="Guid" Nullable="false" />
+    <Property Name="IdEmpleado" Type="Guid" Nullable="false" />
+    <Property Name="IdUser" Type="Int64" Nullable="false" />
+    <Property Name="IdServicio" Type="Guid" Nullable="false" />
+    <Property Name="DiaSemana" Type="Int32" Nullable="false" />
+    <Property Name="Desde" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Hasta" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="DuracionBloqueHorario" Type="Int32" Nullable="false" />
+    <Property Name="AtencionesPorBloqueHorario" Type="Int32" Nullable="false" />
+    <Property Name="TopeAtencionesDiarias" Type="Int32" Nullable="false" />
+    <Property Name="GrupoAtencionSimultanea" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="BajaLogica" Type="DateTime" Precision="3" />
+    <Property Name="EsEspecial" Type="Boolean" />
+    <NavigationProperty Name="Empleado" Relationship="BarberiaModel.FK_TurnoDedicacion_Empleado" FromRole="TurnoDedicacion" ToRole="Empleado" />
+    <NavigationProperty Name="Ente" Relationship="BarberiaModel.FK_TurnoDedicacion_Ente" FromRole="TurnoDedicacion" ToRole="Ente" />
+    <NavigationProperty Name="Servicio" Relationship="BarberiaModel.FK_TurnoDedicacion_Servicio" FromRole="TurnoDedicacion" ToRole="Servicio" />
+    <NavigationProperty Name="User" Relationship="BarberiaModel.FK_TurnoDedicacion_User" FromRole="TurnoDedicacion" ToRole="User" />
+  </EntityType>
+  <EntityType Name="TurnoEstado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TurnoTipo">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RequiereValidacion" Type="Boolean" Nullable="false" />
+    <Property Name="BajaLogica" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="Foto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdEnte" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Ente" Relationship="BarberiaModel.FK_User_Ente" FromRole="User" ToRole="Ente" />
+    <NavigationProperty Name="TurnoDedicacion" Relationship="BarberiaModel.FK_TurnoDedicacion_User" FromRole="User" ToRole="TurnoDedicacion" />
+    <NavigationProperty Name="Rol" Relationship="BarberiaModel.UserRol" FromRole="User" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="IdCliente" Type="Guid" />
+    <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+    <Property Name="IdTipoComprobante" Type="Guid" Nullable="false" />
+    <Property Name="NumeroComprobante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Impuesto" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MontoTotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IdEstado" Type="Guid" Nullable="false" />
+    <Property Name="IdCaja" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VentaEstado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="Guid" Nullable="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Cliente_Localidad">
+    <End Type="BarberiaModel.Localidad" Role="Localidad" Multiplicity="0..1" />
+    <End Type="BarberiaModel.Cliente" Role="Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_Sexo">
+    <End Type="BarberiaModel.Sexo" Role="Sexo" Multiplicity="1" />
+    <End Type="BarberiaModel.Cliente" Role="Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="IdSexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empleado_Localidad">
+    <End Type="BarberiaModel.Localidad" Role="Localidad" Multiplicity="0..1" />
+    <End Type="BarberiaModel.Empleado" Role="Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empleado_Sexo">
+    <End Type="BarberiaModel.Sexo" Role="Sexo" Multiplicity="1" />
+    <End Type="BarberiaModel.Empleado" Role="Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IdSexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TurnoDedicacion_Empleado">
+    <End Type="BarberiaModel.Empleado" Role="Empleado" Multiplicity="1" />
+    <End Type="BarberiaModel.TurnoDedicacion" Role="TurnoDedicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="TurnoDedicacion">
+        <PropertyRef Name="IdEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ente_Localidad">
+    <End Type="BarberiaModel.Localidad" Role="Localidad" Multiplicity="1" />
+    <End Type="BarberiaModel.Ente" Role="Ente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Ente">
+        <PropertyRef Name="IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnteEspecialidad_Ente">
+    <End Type="BarberiaModel.Ente" Role="Ente" Multiplicity="1" />
+    <End Type="BarberiaModel.EnteEspecialidad" Role="EnteEspecialidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="EnteEspecialidad">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TurnoDedicacion_Ente">
+    <End Type="BarberiaModel.Ente" Role="Ente" Multiplicity="1" />
+    <End Type="BarberiaModel.TurnoDedicacion" Role="TurnoDedicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="TurnoDedicacion">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Ente">
+    <End Type="BarberiaModel.Ente" Role="Ente" Multiplicity="1" />
+    <End Type="BarberiaModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnteEspecialidad_Especialidad">
+    <End Type="BarberiaModel.Especialidad" Role="Especialidad" Multiplicity="1" />
+    <End Type="BarberiaModel.EnteEspecialidad" Role="EnteEspecialidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="EnteEspecialidad">
+        <PropertyRef Name="IdEspecialidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Servicio_Especialidad">
+    <End Type="BarberiaModel.Especialidad" Role="Especialidad" Multiplicity="0..1" />
+    <End Type="BarberiaModel.Servicio" Role="Servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Servicio">
+        <PropertyRef Name="IdEspecialidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Localidad_Partido">
+    <End Type="BarberiaModel.Partido" Role="Partido" Multiplicity="1" />
+    <End Type="BarberiaModel.Localidad" Role="Localidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partido">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Localidad">
+        <PropertyRef Name="IdPartido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partido_Provincia">
+    <End Type="BarberiaModel.Provincia" Role="Provincia" Multiplicity="1" />
+    <End Type="BarberiaModel.Partido" Role="Partido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provincia">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Partido">
+        <PropertyRef Name="IdProvincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TurnoDedicacion_Servicio">
+    <End Type="BarberiaModel.Servicio" Role="Servicio" Multiplicity="1" />
+    <End Type="BarberiaModel.TurnoDedicacion" Role="TurnoDedicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Servicio">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="TurnoDedicacion">
+        <PropertyRef Name="IdServicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TurnoDedicacion_User">
+    <End Type="BarberiaModel.User" Role="User" Multiplicity="1" />
+    <End Type="BarberiaModel.TurnoDedicacion" Role="TurnoDedicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="TurnoDedicacion">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RolRule">
+    <End Type="BarberiaModel.Rol" Role="Rol" Multiplicity="*" />
+    <End Type="BarberiaModel.Rule" Role="Rule" Multiplicity="*" />
+  </Association>
+  <Association Name="UserRol">
+    <End Type="BarberiaModel.Rol" Role="Rol" Multiplicity="*" />
+    <End Type="BarberiaModel.User" Role="User" Multiplicity="*" />
+  </Association>
+</Schema>

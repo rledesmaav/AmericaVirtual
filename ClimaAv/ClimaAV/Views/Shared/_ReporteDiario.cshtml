@@ -1,0 +1,42 @@
+﻿@using ClimaAV.Models
+@model ResultViewModel
+
+<div class="icon-box">
+    @*<i class="icofont-image"></i>*@
+    <div class="row">
+        <div class="col-md-12 centrar">
+            <h3><a href="">Reporte del clima</a></h3>
+        </div>
+        <div class="col-md-12">
+            <hr />
+        </div>
+        @if (Model.Ciudad != null)
+        {
+<div class="contenedor-clima">
+
+    <div class="pais">@Html.DisplayFor(m => m.Pais)</div>
+    <div class="icono">
+        @{ var icono = "http://openweathermap.org/img/wn/" + Model.Icono + ".png";
+<img class="img-clima" src="@icono"> }
+
+    </div>
+    <div class="ciudad">@Html.DisplayFor(m => m.Ciudad) </div>
+    <div class="dia">@Html.DisplayFor(m => m.Dia)</div>
+    <div class="viento">Viento: @Html.DisplayFor(m => m.Viento)km</div>
+    <div class="clima">@Html.DisplayFor(m => m.Clima)</div>
+    @*<div class="provlluvia">Prob. lluvia: @Html.LabelFor(m => m.ProbPreci)%</div>*@
+    <div class="temperatura">@Html.DisplayFor(m => m.Temp)°</div>
+    <div class="humedad">Humedad: @Html.DisplayFor(m => m.Humedad)%</div>
+
+
+</div> }
+            else
+            {
+<div class="col-md-12">
+    <label class="control-label danger"> Seleccione una provincia para continuar</label>
+</div>}
+
+    </div>
+
+
+</div>

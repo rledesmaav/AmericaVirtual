@@ -1,0 +1,365 @@
+﻿@model Barberia.Models.TurnoModel
+@using Resources
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link rel="stylesheet" href="~/plugins/fullcalendar/main.min.css">
+<link rel="stylesheet" href="~/plugins/fullcalendar-daygrid/main.min.css">
+<link rel="stylesheet" href="~/plugins/fullcalendar-timegrid/main.min.css">
+<link rel="stylesheet" href="~/plugins/fullcalendar-bootstrap/main.min.css">
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.HiddenFor(model => model.HoraTurno)
+        @Html.HiddenFor(model => model.FechaTurno)
+        @Html.HiddenFor(model => model.IdCliente)
+
+        <div class="row" style="padding-bottom:20px">
+            <div class="col-md-12">
+                <h4>Crear Turno</h4>
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Datos</h3>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdEnte)
+                            @Html.DropDownList("IdEnte", new SelectList(ViewBag.Entes, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdEnte, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdEspecialidad)
+                            @Html.DropDownList("IdEspecialidad", new SelectList(ViewBag.Especialidades, "ORID", "Nombre"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdEspecialidad, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdServicio)
+                            @Html.DropDownList("IdServicio", new SelectList(ViewBag.Servicios, "ORID", "Nombre"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdServicio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdEmpleado)
+                            @Html.DropDownList("IdEmpleado", new SelectList(ViewBag.Empleados, "IdEmpleadoEnte", "Nombre"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdEmpleado, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdTipoTurno)
+                            @Html.DropDownList("IdTipoTurno", new SelectList(ViewBag.TiposTurnos, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdTipoTurno, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date range:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Horario)
+                            @Html.DropDownList("IdHorario", new SelectList(ViewBag.Horarios, "Id", "TURNO"), "SIN DEFINIR", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Horario, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="button" id="AgregarCliente" style="width:100%" onclick="AgregarCT()" value="AGREGAR CLIENTE" class="btn btn-default" />
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="cliente_turno">
+                @Html.Partial("_ClienteTurno", new Barberia.Models.ClienteTurnoModel())
+            </div>
+
+        </div>
+
+        <div class="card-footer row">
+
+            <div class="col-md-4">
+                <input type="submit" id="btnCrear" style="width:100%" value="CREAR" class="btn btn-default" />
+            </div>
+
+            <div class="col-md-4">
+                <input onclick="window.location='@Url.Action("Index")';" style="width:100%" value="VOLVER" class="btn btn-default" />
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-body p-0">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/smyp.js"></script>
+    <script src="~/Scripts/turno.js"></script>
+
+    <script src="~/plugins/moment/moment.min.js"></script>
+    <script src="~/plugins/fullcalendar/main.min.js"></script>
+    <script src="~/plugins/fullcalendar-daygrid/main.min.js"></script>
+    <script src="~/plugins/fullcalendar-timegrid/main.min.js"></script>
+    <script src="~/plugins/fullcalendar-interaction/main.min.js"></script>
+    <script src="~/plugins/fullcalendar-bootstrap/main.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var availableDates = [];
+            $("#IdEnte").focus();
+        });
+
+        $('form').submit(function (e) {
+
+            var valid = true;
+            $("form").each(function () {
+                valid = valid && $(this).valid();
+            }); if (!valid) return;
+
+            document.getElementById("btnCrear").value = "Enviando...";
+            document.getElementById("btnCrear").disabled = true;
+
+            return true;
+
+        });
+
+
+        $('#IdEnte').change(function () {
+            var ente = $(this).val();
+            CargarEspecialidades(ente);
+        });
+
+        $('#IdEspecialidad').change(function () {
+            var especialidad = $(this).val();
+            CargarServicios(especialidad);
+        });
+
+        $('#IdServicio').change(function () {
+            var ente = $('#IdEnte').val();
+            var servicio = $(this).val();
+            CargarEmpleados(ente, servicio);
+        });
+
+
+        $('#IdHorario').change(function () {
+            var combo = document.getElementById("IdHorario");
+            var selected = combo.options[combo.selectedIndex].text;
+            $('#HoraTurno').val(selected);
+        });
+
+        $('#Fecha').change(function () {
+            var ente = $('#IdEnte').val();
+            var servicio = $('#IdServicio').val();
+            var empleado = $('#IdEmpleado').val();
+            var sobreturno = 'false';
+            var fecha = $(this).val();
+            $('#FechaTurno').val(fecha);
+            CargarHorarios(ente, servicio, empleado, fecha, sobreturno);
+        })
+
+
+        function AgregarCT() {
+            $("#ModalCT").find("#Documento").val("");
+            $("#ModalCT").find("#IdCliente").val("00000000-0000-0000-0000-000000000000");
+            //$("#IdTipoContacto").val($("#IdTipoEstado option:first").val());
+            $('#ModalCT').modal('show');
+        }
+
+        function ProcesarClienteTurno() {
+
+            var clitur = {};
+            var valid = true;
+
+            $('.clitur').each(function () {
+                valid = valid && $(this).valid();
+                var name = $(this).attr('id');
+                clitur[name] = $(this).val();
+            });
+
+            //var persona = $("#IdPersona").val();
+            //contacto["IdPersona"] = persona;
+
+            if (!valid) {
+                alert('Verifique los datos');
+                return;
+            }
+
+            $.ajax({
+                data: JSON.stringify(clitur),
+                url: '@Url.Action("ProcesarCliente", "Turno")',
+                contentType: "application/json;",
+                dataType: "json",
+                type: 'post',
+                success: function (data) {
+                    $("#IdCliente").val(data.orid);
+                    $('#ModalCT').modal('hide');
+                }
+            });
+        }
+
+        function ObtenerPersona() {
+
+            $('#ModalCT').modal('hide');
+            $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+            $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+
+            var doc = $('#ModalCT').find('#Documento').val();
+
+             $.ajax({
+                url: '@Url.Action("ClienteTurnoDetalle", "Turno")' + '?doc=' + doc,
+                type: 'get',
+                 success: function (data) {
+                     $("#cliente_turno").html(data);
+                    $('#ModalCT').modal('show');
+                }
+            });
+
+        }
+
+
+
+        $('#IdEmpleado').change(function () {
+            var ente = $('#IdEnte').val();
+            var servicio = $('#IdServicio').val();
+            var empleado = $('#IdEmpleado').val();
+            var sobreturno = 'false';
+
+            CargarFechas(ente, servicio, empleado, sobreturno);
+
+            $.ajax({
+                url: '@Url.Action("ObtenerCalendario", "Turno")?empleado='+empleado+'&ente='+ente+'&servicio='+servicio,
+                type: 'get',
+                success: function (response) {
+
+                    $('#calendar').empty();
+
+                    function ini_events(ele) {
+                        ele.each(function () {
+                            var eventObject = {
+                                title: $.trim($(this).text()) // use the element's text as the event title
+                            }
+
+                            $(this).data('eventObject', eventObject)
+
+                            $(this).draggable({
+                                zIndex: 1070,
+                                revert: true, // will cause the event to go back to its
+                                revertDuration: 0  //  original position after the drag
+                            })
+
+                        })
+                    }
+
+                    ini_events($('#external-events div.external-event'))
+
+                    var date = new Date()
+                    var d = date.getDate(),
+                        m = date.getMonth(),
+                        y = date.getFullYear()
+
+                    var Calendar = FullCalendar.Calendar;
+                    var Draggable = FullCalendarInteraction.Draggable;
+
+                    var containerEl = document.getElementById('external-events');
+                    var checkbox = document.getElementById('drop-remove');
+                    var calendarEl = document.getElementById('calendar');
+
+                    var calendar = new Calendar(calendarEl, {
+                        plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid'],
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                        },
+                        'themeSystem': 'bootstrap',
+                        events:
+
+                            response
+                        ,
+                        editable: true,
+                        droppable: true, // this allows things to be dropped onto the calendar !!!
+                        drop: function (info) {
+                            if (checkbox.checked) {
+                                info.draggedEl.parentNode.removeChild(info.draggedEl);
+                            }
+                        }
+                    });
+
+                    calendar.render();
+                    var currColor = '#3c8dbc' //Red by default
+                    var colorChooser = $('#color-chooser-btn')
+                    $('#color-chooser > li > a').click(function (e) {
+                        e.preventDefault()
+                        currColor = $(this).css('color')
+                        $('#add-new-event').css({
+                            'background-color': currColor,
+                            'border-color': currColor
+                        })
+                    })
+                    $('#add-new-event').click(function (e) {
+                        e.preventDefault()
+                        var val = $('#new-event').val()
+                        if (val.length == 0) {
+                            return
+                        }
+
+                        var event = $('<div />')
+                        event.css({
+                            'background-color': currColor,
+                            'border-color': currColor,
+                            'color': '#fff'
+                        }).addClass('external-event')
+                        event.html(val)
+                        $('#external-events').prepend(event)
+
+                        ini_events(event)
+                        $('#new-event').val('')
+                    })
+                }
+            });
+
+        });
+
+    </script>
+}

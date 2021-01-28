@@ -1,0 +1,26 @@
+﻿@model ClimaAV.Models.ClimaPorHora
+
+
+@if (Model.city != null)
+{
+    foreach (var item in Model.list)
+    {
+
+        <div class="clima-horas">
+            <div class="dia-horas">@item.Dia</div>
+
+            <div class="icono-hora">
+                @{ var icono = "http://openweathermap.org/img/wn/" + item.weather.FirstOrDefault().icon + ".png";
+        <img class="img-clima" src="@icono"> }
+
+            </div>
+            <div class="dia-horas">@Convert.ToInt32(item.main.temp)°</div>
+        </div> 
+    }
+}
+else
+{
+    <div class="cartel">
+        <label class="control-label danger"> Seleccione una provincia para continuar</label>
+    </div>
+}

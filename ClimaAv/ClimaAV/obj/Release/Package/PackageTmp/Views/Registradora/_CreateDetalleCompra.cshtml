@@ -1,0 +1,92 @@
+﻿
+@model Barberia.Models.DetalleCompraModel
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="modal fade" id="ModalDetalleCompra" data-backdrop="static">
+
+
+    @Html.HiddenFor(model => model.IdCompra, new { @class = "detcomp" })
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalle de Compra</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="accordion" id="accordionExample">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdProveedorDC)
+                            @Html.DropDownList("IdProveedorDC", new SelectList(ViewBag.Proveedores, "ORID", "Nombre"), "SIN DEFINIR", new { @class = "form-control detcomp" })
+                            @Html.ValidationMessageFor(model => model.IdProveedorDC, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="card">
+                            <div class="card-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.IdProductoDC)
+                                            @Html.DropDownList("IdProductoDC", new SelectList(ViewBag.Productos, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control detcomp" })
+                                            @Html.ValidationMessageFor(model => model.IdProductoDC, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">@Html.LabelFor(model => model.CantidadDC)</label>
+                                                    @Html.TextBoxFor(model => model.CantidadDC, null, new { onchange = "CalculoNumerosDetalleCompra(this)", @class = "form-control detcomp", @maxlength = "6" })@*, @onkeypress = "return soloNumeros(event);" })*@
+                                                    <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.CantidadDC)</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">@Html.LabelFor(model => model.PrecioMDC)</label>
+                                                    @Html.TextBoxFor(model => model.PrecioMDC, null, new { @class = "form-control detcomp", @maxlength = "6" })@*, @onkeypress = "return soloNumeros(event);" })*@
+                                                    <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.PrecioMDC)</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">@Html.LabelFor(model => model.DescuentoMDC)</label>
+                                                    @Html.TextBoxFor(model => model.DescuentoMDC, null, new { onchange = "CalculoNumerosDetalleCompra(this)", @class = "form-control detcomp", @maxlength = "6" })@*, @onkeypress = "return soloNumeros(event);" })*@
+                                                    <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.DescuentoMDC)</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">@Html.LabelFor(model => model.MontoMDC)</label>
+                                                    @Html.TextBoxFor(model => model.MontoMDC, null, new { @class = "form-control detcomp", @maxlength = "6", @readonly = "readonly" })@*, @onkeypress = "return soloNumeros(event);" })*@
+                                                    <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.MontoMDC)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="ProcesarDetalleCompra()" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

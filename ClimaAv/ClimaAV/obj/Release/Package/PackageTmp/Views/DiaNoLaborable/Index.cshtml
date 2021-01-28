@@ -1,0 +1,137 @@
+﻿@model Barberia.Models.DiaNoLaborableModel
+@using Resources
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdEnte)
+                @Html.DropDownList("IdEnte", new SelectList(ViewBag.Entes, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control dia" })
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="ProcesarFiltro()" class="btn btn-primary form-control">Buscar</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="GenerarExcel()" class="btn btn-primary form-control">Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="diasnolaborables">
+        @Html.Partial("_DNLLista", new List<Barberia.Models.DiaNoLaborableListaModel>())
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        //jQuery(function () {
+
+        //    var enableDays = ["7-8-2020"];
+
+        //    function enableAllTheseDays(date) {
+        //        var sdate = $.datepicker.formatDate('d-m-yy', date)
+        //        if ($.inArray(sdate, enableDays) != -1) {
+        //            return [true];
+        //        }
+        //        return [false];
+        //    }
+
+        //    $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy', beforeShowDay: enableAllTheseDays });
+        //})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $(function () {
+            $("#diasLista").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "ordering": false,
+                "paging": false
+            });
+        });
+
+        $(document).ready(function () {
+            $('#IdEnte').focus();
+        });
+
+        function ProcesarFiltro() {
+
+            var ente = $('#IdEnte').val();
+
+            if (ente == '') {
+                alert('Seleccione un Ente');
+                retunr;
+            }
+
+            var dia = {};
+
+            $('.dia').each(function () {
+                var name = $(this).attr('id');
+                dia[name] = $(this).val();
+            });
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(dia),
+                url: '@Url.Action("DiaNoLaborableLista", "DiaNoLaborable")',
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+
+                    $('#diasnolaborables').html(data);
+
+                    $(function () {
+                        $("#diasLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+        }
+
+        function GenerarExcel() {
+            $('#diasLista').table2excel({ name: "Prueba", filename: "Personas-Excel" });
+        }
+
+    </script>
+}

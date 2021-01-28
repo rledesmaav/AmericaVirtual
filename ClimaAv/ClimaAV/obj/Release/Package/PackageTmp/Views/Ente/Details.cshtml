@@ -1,0 +1,90 @@
+﻿@model Salud.Models.EnteModel
+@using Resources
+
+@{
+    ViewBag.Title = Resources.Ente;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="content-header">
+        <h2 style="color:#3c8dbc" class="box-title">
+            <i class="fa fa-hospital-o"></i>
+            @ViewBag.Title
+        </h2>
+    </section>
+
+    <div class="container">
+        <div class="card-header">
+            <h2></h2>
+        </div>
+
+        <div class="card-body card-padding">
+
+            <div class="row">
+                @Html.ValidationSummary(true)
+
+                <div class="col-md-6">
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            @Html.LabelFor(model => model.CODE, new { @class = "fg-label" })
+                            @Html.TextBoxFor(model => model.CODE, null, new { @disabled = true, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            @Html.LabelFor(model => model.Descripcion, new { @class = "fg-label" })
+                            @Html.TextBoxFor(model => model.Descripcion, null, new { @disabled = true, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            @Html.LabelFor(model => model.Calle, new { @class = "fg-label" })
+                            @Html.TextBoxFor(model => model.Calle, null, new { @disabled = true, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class=" form-group fg-float">
+                        <div class="fg-line">
+                            @Html.LabelFor(model => model.Altura, new { @class = "fg-label" })
+                            @Html.TextBoxFor(model => model.Altura, null, new { @disabled = true, @type = "number", @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            @Html.LabelFor(model => model.Localidad, new { @class = "fg-label" })
+                            @Html.TextBoxFor(model => model.Localidad.Descripcion, null, new { @disabled = true, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group fg-float">
+                        <div class="fg-line">
+                            @Html.LabelFor(model => model.TipoEnte, new { @class = "fg-label" })
+                            @Html.TextBoxFor(model => model.TipoEnte.Descripcion, null, new { @disabled = true, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.ActionLink(Resources.Atras, "Index", null, null, new { @class = "btn btn-danger btn-sm m-t-10 waves-effect" })
+            </div>
+        </div>
+    </div>
+}

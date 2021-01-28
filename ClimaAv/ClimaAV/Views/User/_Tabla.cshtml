@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ClimaAV.Models.UserIndex>
+@using Resources
+
+<table id="example1" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+
+                    @if (ViewBag.Estado)
+                    {
+                        <a class="col-md-4" title="@Resources.Editar" href="@Url.Action("Edit", new { id = item.UserID })"><i class="fa fa-pen fa-lg"></i></a>
+                        <a class="col-md-4" title="Baja" href="@Url.Action("Estado", new { id = item.UserID, opcion = 0 })"><i class="fa fa-trash fa-lg"></i></a>
+                    }
+                    else
+                    {
+                         <a class="col-md-4" title="Alta" href="@Url.Action("Estado", new { id = item.UserID, opcion = 1 })"><i class="fa fa-user fa-lg"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

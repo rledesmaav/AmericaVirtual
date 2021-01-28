@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Barberia.Models.ServicioListaModel>
+@using Resources
+
+@if (Model.Count() != 0)
+{
+    <table id="serviciosLista" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Editar</th>
+                <th>Código</th>
+                <th>Descripcion</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a style="padding:15px" title="@Resources.Editar" href="@Url.Action("Edit", new { id = item.ORID })"><i class="fas fa-pen"></i></a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CODE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Monto)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Editar</th>
+                <th>Código</th>
+                <th>Descripcion</th>
+                <th>Monto</th>
+            </tr>
+        </tfoot>
+    </table>
+}

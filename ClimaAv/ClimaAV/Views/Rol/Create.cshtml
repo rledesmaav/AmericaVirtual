@@ -1,0 +1,61 @@
+﻿@model ClimaAV.Models.RolModel
+@using Resources
+
+@{
+    ViewBag.Title = Resources.Rol;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="content-header">
+        <h2 style="color:#3c8dbc" class="box-title">
+            <i class="fa fa-object-group"></i>
+            @ViewBag.Title
+        </h2>
+    </section>
+
+    
+        <section class="content">
+        <div class="row">
+            @Html.ValidationSummary(true)
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Description)
+                @Html.TextBoxFor(model => model.Description, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <h5>@Resources.Regla</h5>
+                <table style="width:100%" class="table table-hover table-striped">
+                    @Html.EditorFor(x => x.Rules)
+                </table>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="rules"></div>
+        @Html.ActionLink(Resources.Atras, "Index", null, null, new { @class = "btn btn-danger" })
+        <button type="submit" class="btn btn-primary">@Resources.Aceptar</button>
+    </section>
+}
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/role.js"></script>
+    <script type="text/javascript">
+
+        $(".rulechk").change(function () {
+            if (this.checked) {
+
+                var ruleId = $(this).val();
+                if ($("input[type=hidden][name='Rules[" + ruleId + "]'").index != -1)
+                    $('.rules').append('<input type="hidden" name="Rules[' + ruleId + ']" />');
+            }
+        });
+
+    </script>
+}

@@ -1,0 +1,69 @@
+﻿@model Barberia.Models.LoginModel
+
+@{
+    ViewBag.Title = "LOGIN";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="login-page">
+    <div class="form">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
+        {
+            @Html.TextBoxFor(m => Model.UserName, new { @placeholder = "USUARIO", @class = "form-control", @maxlength = "30" })
+            @Html.ValidationMessageFor(m => Model.UserName)
+
+            @Html.PasswordFor(m => Model.Password, new { @placeholder = "PASS", @class = "form-control", @maxlength = "30" })
+            @Html.ValidationMessageFor(m => Model.Password)
+            <button type="submit" id="login" class="btn btn-primary btn-block btn-flat">INGRESAR</button>
+        }
+    </div>
+</div>
+
+
+@*<div class="login-box">
+    <div class="login-logo">
+        <h1>SALUD</h1>
+    </div>
+    <div class="login-box-body">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "lcb-form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form-group has-feedback">
+                @Html.TextBoxFor(m => Model.UserName, new { @placeholder = "USUARIO", @class = "form-control", @maxlength = "30" })
+                @Html.ValidationMessageFor(m => Model.UserName)
+            </div>
+            <div class="form-group has-feedback">
+                @Html.PasswordFor(m => Model.Password, new { @placeholder = "PASS", @class = "form-control", @maxlength = "30" })
+                @Html.ValidationMessageFor(m => Model.Password)
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-12">
+                    <button type="submit" id="login" class="btn btn-primary btn-block btn-flat">INGRESAR</button>
+                </div>
+                <div class="col-xs-12">
+                    <p></p>
+                    <a target="_blank" href="~/Videos/1-Login/index.html">¿Necesita ayuda?</a>
+                </div>
+            </div>
+            @*<a href="@Url.Action("ForgotPassword", "Account")"><span>@Resources.ForgotYourPassword</span></a>*@
+        }
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        var txtBox = document.getElementById("UserName");
+        if (txtBox != null) txtBox.focus();
+
+        $('.message a').click(function () {
+            $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+        });
+
+    </script>
+
+}

@@ -1,0 +1,426 @@
+﻿
+<html>
+
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>The Bank Barber</title>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Scripts/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/datepicker.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+
+</head>
+<body>
+    <div class="container-fluid">
+        @RenderBody()
+
+    </div>
+    <div class="fullscreen"></div>
+
+
+
+    <div style="padding:8px;position:fixed;z-index:9999;">
+        <div class="nav"><span class="open-nav" onclick="openNav()"><img src="../Images/img//burger_menu.png"></span></div>
+
+    </div>
+
+    <div class="header">
+        <div class="section"><a href="#inici" class="active" title="Incio">INICIO</a></div>
+        <div class="section"><a href="#aboutus" title="Sobre Nosotros">SOBRE NOSOTROS</a></div>
+        <div class="section"><a href="#horaris" title="Horarios">HORARIOS</a></div>
+        <div class="section"><a href="#serveis" title="Servicios">SERVICIOS</a></div>
+        <div class="section"><a href="#galeria" title="Galeria">GALERIA</a></div>
+        <div class="section"><a href="#contacte" title="CONTACT">CONTACT</a></div>
+    </div>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#inici">INICIO</a>
+        <a href="#aboutus">NOSOTROS</a>
+        <a href="#horaris">HORARIOS</a>
+        <a href="#serveis">SERVICES</a>
+        <a href="#galeria">GALERIA</a>
+        <a href="#contacte">CONTACTO</a>
+    </div>
+
+
+    <div id="inici" class="main">
+
+    </div>
+    <div id="dialog-video" title="X" style="display:none">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/n-vI53Tv2GM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div id="aboutus" class="aboutus">
+        <div class="aboutus-container">
+            <div class="aboutus-text">
+
+                <img class="titol-aboutus" src="../Images/img//en/titol_about_us.png">
+                <p>
+
+
+                    <b>
+                        Somos un grupo de profesionales que decidimos dar un salto en calidad en servicios para el hombre.
+                        <br>A mediados del 2020 y en plena pandemia del Covid lanzamos The Bank Barber en la mítica esquina
+                        "Del viejo banco" en 25 de Mayo 50, Temperley.
+                        <br>En el primer local de la cadena se brindan servicios de peluquería para niños y adultos, corte tradicional a tijera, navaja y barbería. Servicios integrales para el hombre y la mujer como masajes y depilación definitiva con el moderno sistema Leonardo.
+                        Buscamos desarrollar servicios de calidad en un ambiente cálido y agradable.
+                        <br>No es un corte de pelo, es una experiencia.
+                    </b>
+                    <br>
+                    @*<b>Servicios siempre con y sin cita previa!</b>*@
+
+
+
+                </p>
+            </div>
+            <div class="photography"><div class="shave-brush"></div></div>
+        </div>
+    </div>
+
+
+    <div id="horaris" class="supporting">
+
+        <div class="container">
+            <img class="titol-horaris" src="../Images/img//en/titol_horaris.png">
+            <p class="text_horaris"><span>Martes</span> a <span>Sabados</span> Desde <span>10:00 - 20:00</span></p>
+            <p class="text_horaris2"><span>17 de Octubre</span> - <span>Diciembre</span><span>24</span> y <span>31 </span> <span>Horarios especiales, consultar</span></p>
+        </div>
+    </div>
+
+
+    <div id="serveis" class="serveis">
+        <img class="titol-serveis" src="../Images/img//en/titol_serveis.png">
+        <div class="container">
+            <div class="tabs effect-1">
+                <!-- tab-title -->
+                <input type="radio" id="tab-1" name="tab-effect-1">
+                <span>Peluquería </span>
+                <div class="line"></div>
+                <!-- tab-content -->
+                <div class="tab-content">
+                    <section id="tab-item-1">
+                        <div class="servei-table">
+                            <div style="display:table-row;">
+                                <h1 class="servei-titol">Corte de niños y adultos - Tradicional </h1>@*<span class="servei-dots">&nbsp;</span><h1 style="display:table-cell;width:10%;"><span class="numeros">650</span> $</h1>*@
+                            </div>
+                        </div>
+                        @*<h3><span class="numeros">30</span> MIN (Tiempo estimado)</h3>*@
+                        <div class="servei-table">
+                            <div style="display:table-row;">
+                                <h1 class="servei-titol">Navaja </h1>@*<span class="servei-dots">&nbsp;</span><h1 style="display:table-cell;width:10%;"><span class="numeros">500</span> $</h1>*@
+                            </div>
+                        </div>
+                        @*<h3><span class="numeros">30</span> MIN (Tiempo estimado)</h3><div class="servei-table"></div>*@
+                        <div class="servei-table">
+                            <div style="display:table-row;">
+                                <h1 class="servei-titol">Moderno - Canicidio - Colores </h1>
+                            </div>
+                        </div>
+                    </section><section id="tab-item-2"></section>
+                </div>
+            </div>
+            <div class="tabs effect-1">
+
+                <input type="radio" id="tab-2" name="tab-effect-1">
+                <span>BARBA</span>
+
+                <div class="line"></div>
+                <div class="tab-content">
+                    <section id="tab-item-1"></section><section id="tab-item-2">
+                        <div class="servei-table">
+                            <div style="display:table-row;">
+                                <h1 class="servei-titol">Corte - Arreglo - Aseo </h1>@*<span class="servei-dots">&nbsp;</span><h1 style="display:table-cell;width:10%;"><span class="numeros">330</span> $</h1>*@
+                            </div>
+                        </div>
+                        @*<h2>Definition of beard with razor and electric trimmer and / or scissors. 1€ extra/client under current health situation.</h2>
+                            <h3><span class="numeros">30</span> MIN (Tiempo estimado)</h3><div class="servei-table">
+                                <div style="display:table-row;">
+                                    <h1 class="servei-titol">Rasurada </h1><span class="servei-dots">&nbsp;</span><h1 style="display:table-cell;width:10%;"><span class="numeros">560</span> $</h1>
+                                </div>
+                            </div>
+
+                            <h3><span class="numeros">45</span> MIN (Tiempo estimado)</h3><div class="servei-table"></div>*@
+
+                    </section>
+                </div>
+            </div>
+            <div class="tabs effect-1">
+
+                <input type="radio" id="tab-2" name="tab-effect-1">
+                <span>SPA</span>
+
+                <div class="line"></div>
+                <div class="tab-content">
+                    <section id="tab-item-2"></section><section id="tab-item-2">
+                        <div class="servei-table">
+                            <div style="display:table-row;">
+                                <h1 class="servei-titol">Masajes - Depilación definitiva (Ambos sexos) </h1>
+                            </div>
+                        </div>
+                       
+
+                    </section>
+
+                </div>
+            </div>
+            <div class="tabs effect-1">
+
+                <input type="radio" id="tab-2" name="tab-effect-1">
+                <span>Cafetería</span>
+
+                <div class="line"></div>
+                <div class="tab-content">
+                    <section id="tab-item-4"></section><section id="tab-item-2">
+                        <div class="servei-table">
+                            <div style="display:table-row;">
+                                <h1 class="servei-titol">Café  - Bebidas - Cerveza artesanal </h1>
+                            </div>
+                        </div>
+
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="galeria" class="galeria">
+        <img class="titol-galeria" src="../Images/img//en/titol_galeria.png">
+        <div class="galeria-container">
+            <div onclick="javascript:playVideo(3);" class="galeria-item" style="cursor:pointer;background-image:url(../Images/img//galeria/video3.png);"></div>
+            <div class="galeria-item photo1" style="background-image: url(../Images/img//galeria/galeria7.png);"></div>
+            <div class="galeria-item photo2" style="background-image:url(../Images/img//galeria/galeria2.png);"></div>
+            <div class="galeria-item photo3" style="background-image:url(../Images/img//galeria/galeria3.png);"></div>
+            <div class="galeria-item photo4" style="background-image: url(../Images/img//galeria/galeria4.png);"></div>
+            <div class="galeria-item photo5" style="background-image:url(../Images/img//galeria/galeria5.png);"></div>
+            <div onclick="javascript:playVideo(2);" class="galeria-item" style="cursor:pointer;background-image:url(../Images/img//galeria/video2.png);"></div>
+            <div class="galeria-item photo6" style="background-image:url(../Images/img//galeria/galeria6.png);"></div>
+        </div>
+    </div>
+
+
+    <div id="contacte" class="contacte">
+        <h1 style="margin-top:0px;" class="titol">CONTACTO</h1>
+        <div style="margin-top:2.5%;">
+
+          
+                <p class="busquem">
+                    Teléfono: 2052.0222 <br />
+                    25 de Mayo 50 - Temperley
+                </p>
+           
+
+            <div style="width:45%;display:inline-block;vertical-align:top;">
+                <p style="margin-bottom:10%;"><a href="mailto:info@TheBankBarber.com.ar"><i class="fa fa-envelope-square" style="margin-right:1%;"></i>info@TheBankBarber.com.ar</a></p>
+
+            </div>
+            <div style="width:45%;display:inline-block;vertical-align:top;">
+                <p style="margin-bottom:17%;"><a href="https://www.instagram.com/TheBankBarberOK" target="_blank"><i class="fa fa-instagram" style="margin-right:1%;"></i>INSTAGRAM</a></p>
+                <p style="margin-bottom:17%;"><a href="https://www.facebook.com/TheBankBarberOK" target="_blank"><i class="fa fa-facebook-square" style="margin-right:1%;"></i>FACEBOOK</a></p>
+                @* <p style="margin-bottom:10%;"><a href="https://www.twitter.com/TheBankBarberOK" target="_blank"><i class="fa fa-twitter-square" style="margin-right:1%;"></i>TWITTER</a></p>*@
+            </div>
+        </div>
+        <div class="copyright">SmypSoft 2020</div>
+        <div class="designed">Designed by Juan Domingo Peron</div>
+    </div>
+
+</body>
+
+
+</html>
+<script>
+    $(document).ready(
+        function () {
+            $('a[href*=#]').each(function () {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname && this.hash.replace(/#/, '')) {
+                    var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) + ']');
+                    var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+                    if ($target) {
+                        var targetOffset = $target.offset().top;
+                        $(this).click(function () {
+                            $('html, body').animate({ scrollTop: targetOffset }, 1000);
+                            return false;
+                        });
+                    }
+                }
+            });
+
+
+            var client = "";
+            var dia = "";
+            var hora = "";
+            var treballador = "";
+            var tel = "";
+            var naixement = "";
+            var gallery_photos = JSON.parse('["galeria1.png", "galeria2.png", "galeria3.png", "galeria4.png", "galeria5.png", "galeria6.png", "galeria7.png", "galeria8.png","galeria1.png", "galeria2.png", "galeria3.png", "galeria4.png", "galeria5.png", "galeria6.png", "galeria7.png", "galeria8.png","galeria1.png", "galeria2.png", "galeria3.png", "galeria4.png", "galeria5.png", "galeria6.png", "galeria7.png", "galeria8.png"]');
+            var gallery_count = 0;
+
+            $('#barberies-carousel').owlCarousel({
+                loop: false,
+                margin: 10,
+                dots: false,
+                responsiveClass: true,
+                nav: true,
+                navText: ['<img class="arrow_left_black" src="./../Images/img//left-arrow-black.png"></img>', '<img class="arrow_right_black" src="../Images/img//right-arrow-black.png"></img>'],
+                items: 1,
+            });
+
+            setInterval(function () {
+                if (gallery_photos.length == 0) {
+                    console.log("reset");
+                    gallery_photos = JSON.parse('["galeria1.png", "galeria2.png", "galeria3.png", "galeria4.png", "galeria5.png", "galeria6.png", "galeria7.png", "galeria8.png","galeria1.png", "galeria2.png", "galeria3.png", "galeria4.png", "galeria5.png", "galeria6.png", "galeria7.png", "galeria8.png","galeria1.png", "galeria2.png", "galeria3.png", "galeria4.png", "galeria5.png", "galeria6.png", "galeria7.png", "galeria8.png"]');
+                }
+                if (gallery_count == 0) {
+                    var x = Math.floor((Math.random() * gallery_photos.length));
+                    photo_x = gallery_photos[x];
+                    gallery_photos.splice(x, 1);
+                    $(".photo1").fadeOut('slow', function () { $(".photo1").css('background-image', 'url(../Images/img//galeria/' + photo_x + ')'); $(".photo1").fadeIn('slow'); });
+
+                    var y = Math.floor((Math.random() * gallery_photos.length));
+                    photo_y = gallery_photos[y];
+                    gallery_photos.splice(y, 1);
+                    $(".photo3").fadeOut('slow', function () { $(".photo3").css('background-image', 'url(../Images/img//galeria/' + photo_y + ')'); $(".photo3").fadeIn('slow'); });
+
+                    var z = Math.floor((Math.random() * gallery_photos.length));
+                    photo_z = gallery_photos[z];
+                    gallery_photos.splice(z, 1);
+                    $(".photo5").fadeOut('slow', function () { $(".photo5").css('background-image', 'url(../Images/img//galeria/' + photo_z + ')'); $(".photo5").fadeIn('slow'); });
+                    ++gallery_count;
+                } else if (gallery_count == 1) {
+                    var w = Math.floor((Math.random() * gallery_photos.length));
+                    photo_w = gallery_photos[w];
+                    gallery_photos.splice(w, 1);
+                    $(".photo2").fadeOut('slow', function () { $(".photo2").css('background-image', 'url(../Images/img//galeria/' + photo_w + ')'); $(".photo2").fadeIn('slow'); });
+
+                    var v = Math.floor((Math.random() * gallery_photos.length));
+                    photo_v = gallery_photos[v];
+                    gallery_photos.splice(v, 1);
+                    $(".photo4").fadeOut('slow', function () { $(".photo4").css('background-image', 'url(../Images/img//galeria/' + photo_v + ')'); $(".photo4").fadeIn('slow'); });
+
+                    var u = Math.floor((Math.random() * gallery_photos.length));
+                    photo_u = gallery_photos[u];
+                    gallery_photos.splice(u, 1);
+                    $(".photo6").fadeOut('slow', function () { $(".photo6").css('background-image', 'url(../Images/img//galeria/' + photo_u + ')'); $(".photo6").fadeIn('slow'); });
+                    gallery_count = 0;
+                }
+            }, 4000);
+        });
+
+    String.format = function () {
+        var s = arguments[0];
+        for (var i = 0; i < arguments.length - 1; i += 1) {
+            var reg = new RegExp('\\{' + i + '\\}', 'gm');
+            s = s.replace(reg, arguments[i + 1]);
+        }
+        return s;
+    };
+
+
+    var loadBarbersSlider = function () {
+        $('.slider').owlCarousel({
+            loop: true,
+            margin: 10,
+            //center:true,
+            dots: true,
+            responsiveClass: true,
+            nav: true,
+            navText: ['<img class="arrow_left" src="./../Images/img//left-arrow.png"></img>', '<img class="arrow_right" src="../Images/img//right-arrow.png"></img>'],
+            responsive: {
+                0: {
+                    items: 1,
+                    slideBy: 1,
+                    nav: true
+                },
+                600: {
+                    items: 2,
+                    slideBy: 2,
+                    nav: false
+                },
+                1000: {
+                    items: 3,
+                    slideBy: 3,
+                    loop: false
+                }
+            }
+        });
+        console.log('done2');
+    };
+
+
+
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        $('.open-nav').css('display', 'none');
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+
+        $('.open-nav').css('display', 'inline');
+    }
+
+
+
+    $('#telefon').bind("enterKey", function (e) {
+        enviarIdentificacio();
+    });
+    $('#telefon').keyup(function (e) {
+        if (e.keyCode == 13) {
+            $(this).trigger("enterKey");
+        }
+    });
+
+    $('#datanaixement').bind("enterKey", function (e) {
+        enviarIdentificacio();
+    });
+    $('#datanaixement').keyup(function (e) {
+        if (e.keyCode == 13) {
+            $(this).trigger("enterKey");
+        }
+    });
+
+
+
+
+    function playVideo(id) {
+        h = 315 * $(window).height() / 768;
+        w = 560 * $(window).width() / 1400;
+        if (id == 1) {
+            iframe = '<iframe width="' + w + '" height="' + h + '" src="https://www.youtube.com/embed/n-vI53Tv2GM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+        } else if (id == 2) {
+            iframe = '<iframe width="' + w + '" height="' + h + '" src="https://www.youtube.com/embed/n-vI53Tv2GM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+        } else {
+            iframe = '<iframe width="' + w + '" height="' + h + '" src="https://www.youtube.com/embed/n-vI53Tv2GM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+        }
+        $("#dialog-video").html(iframe);
+        $(".ui-dialog-titlebar").css('display', 'none');
+        $("#dialog-video").dialog({
+            width: w,
+            resizable: false,
+            modal: true,
+            position: { my: "center middle", at: "center middle", of: window },
+        });
+        //$(".ui-dialog-titlebar").css('display','none');
+        $(".ui-dialog").css('border', '1px solid black');
+        $(".ui-dialog-content").css('background-color', 'black');
+        $(".ui-dialog-titlebar").css('background-color', 'black');
+        $(".ui-dialog-titlebar").css('color', 'white');
+        $(".ui-dialog-titlebar").css('text-align', 'right');
+        $(".ui-dialog-title").css('margin-right', '5px');
+        $(".ui-dialog-title").css('cursor', 'pointer');
+        $(".ui-dialog-title").click(function () {
+            $("#dialog-video").dialog("destroy");
+        });
+
+        $("#dialog-video").show();
+    }
+</script>

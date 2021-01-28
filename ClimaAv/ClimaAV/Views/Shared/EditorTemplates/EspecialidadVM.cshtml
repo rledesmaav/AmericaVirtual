@@ -1,0 +1,18 @@
+﻿@model ClimaAV.Models.EspecialidadVM
+
+@using Resources
+
+<tr>
+    <td>
+        @Html.HiddenFor(x => x.ORID)
+        @Model.Descripcion
+    </td>
+    <td>
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(i => i.Selected)
+            </label>
+        </div>
+    </td>
+</tr>
+

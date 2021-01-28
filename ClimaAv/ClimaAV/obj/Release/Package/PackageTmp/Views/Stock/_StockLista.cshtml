@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Barberia.Models.StockListaModel>
+@using Resources
+
+@if (Model.Count() != 0)
+{
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Moviminetos de Stock</h4>
+        </div>
+    </div>
+    <table id="stocksLista" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Editar</th>
+                <th>Fecha</th>
+                <th>Entrada</th>
+                <th>Salida</th>
+                <th>Producto</th>
+                <th>Operacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a style="padding:15px" title="@Resources.Editar" href="@Url.Action("Edit", new { id = item.ORID })"><i class="fas fa-pen"></i></a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Entrada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Operacion)
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Editar</th>
+                <th>Fecha</th>
+                <th>Entrada</th>
+                <th>Salida</th>
+                <th>Producto</th>
+                <th>Operacion</th>
+            </tr>
+        </tfoot>
+    </table>
+}

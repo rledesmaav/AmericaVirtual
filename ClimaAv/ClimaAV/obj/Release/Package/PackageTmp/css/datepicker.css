@@ -1,0 +1,108 @@
+.ui-datepicker-year{
+	display:none;
+}
+.ui-datepicker {
+	overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../img/calendar.png');
+  /*width: 225px;*/
+  width:70%;
+  /*height: auto;*/
+  height:260px;
+  margin: 5px auto 0;
+  font: 9pt Arial, sans-serif;
+  padding: 0 4% 0 4%;
+}
+.ui-datepicker a {
+  text-decoration: none;
+}
+.ui-datepicker table {
+  width: 100%;
+}
+/*HEADER*/
+.ui-datepicker-header {
+  color: #000;
+  font-weight: bold;
+  line-height: 30px;
+}
+.ui-datepicker-title {
+  /*text-align: right;*/
+  text-align:center;
+}
+.ui-datepicker-month{
+		position:relative;
+		/*top:200px;*/
+		letter-spacing:1.6px;
+}
+.ui-datepicker-prev, .ui-datepicker-next {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  cursor: pointer;
+  background-image: url('../img/arrow2.png');
+  background-repeat: no-repeat;
+  line-height: 600%;
+  overflow: hidden;
+}
+.ui-datepicker-prev {
+  float: left;
+  background-position: center -30px;
+  position: relative;
+    top: 117px;
+    left: -25px;
+}
+.ui-datepicker-next {
+  float: right;
+  background-position: center 0px;
+      position: relative;
+    top: 117px;
+    left: 25px;
+}
+/*DAYS*/
+.ui-datepicker th {
+  text-transform: uppercase;
+  font-size: 6pt;
+  padding: 5px 0;
+  color: #000;
+}
+.ui-datepicker tbody td {
+  padding: 0;
+}
+/*Default, Hover and Active State*/
+.ui-datepicker td span, .ui-datepicker td a {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  color: #000;
+}
+
+.ui-datepicker-unselectable .ui-state-default {
+  color: #9E9E9E;
+}
+.ui-datepicker-calendar .ui-state-hover {
+  background: #f7f7f7;
+  border-radius: 25px;
+}
+.ui-datepicker-calendar .ui-state-active {
+  background: #000;
+  border-radius: 25px;
+  color: #fff;
+}
+/*FIXING POSITION*/
+.ui-datepicker-calendar td:first-child .ui-state-active {
+  width: 29px;
+  margin-left: 0;
+}
+.ui-datepicker-calendar td:last-child .ui-state-active {
+  width: 29px;
+  margin-right: 0;
+}
+.ui-datepicker-calendar tr:last-child .ui-state-active {
+  height: 29px;
+  margin-bottom: 0;
+}

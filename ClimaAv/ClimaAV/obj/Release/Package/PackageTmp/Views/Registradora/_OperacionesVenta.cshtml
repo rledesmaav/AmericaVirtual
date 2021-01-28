@@ -1,0 +1,79 @@
+﻿
+@model Barberia.Models.OperacionesVentaModel
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="modal fade" id="ModalOperaciones" data-backdrop="static">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Datos de la venta</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-form-label">
+                            Nro. Caja: @Model.CajaNumeroOV || Usuario: @Model.UsuarioOV || Fecha: @Model.FechaOV
+                        </div>
+                        <div class="col-form-label">
+                            Cliente: @Model.ClienteOV
+                        </div>
+                        <div class="col-form-label">
+
+                            T.C. @Model.TipoComprobanteOV || Nro: @Model.NumeroComprobanteOV
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row" >
+                    <div type="hidden">
+                        <div class="form-group req">
+                            @Html.EditorFor(model => model.IdVentaOV , new { htmlattributes = new { @class = "form-control cventov", @readonly = "readonly", @type = "hidden" } })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group req">
+                            Impuestos
+                            @Html.EditorFor(model => model.ImpuestoOV, new { htmlattributes = new { @class = "form-control cventov", @readonly = "readonly" } })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group req">
+                            Total
+                            @Html.EditorFor(model => model.MontoTotalOV, new { htmlattributes = new { @class = "form-control cventov", @readonly = "readonly" } })
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdEstadoOV)
+                            @Html.DropDownList("IdEstadoOV", new SelectList(ViewBag.EstadosVenta, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control cventov" })
+                            @Html.ValidationMessageFor(model => model.IdEstadoOV, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" onclick="ProcesarOperacionesVenta()" class="btn btn-primary">Procesar</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+

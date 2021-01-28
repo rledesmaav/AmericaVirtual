@@ -1,0 +1,32 @@
+﻿@model ClimaAV.Models.RuleModel
+
+@if (Model.Id <= 0)
+{
+    <tr style="vertical-align: bottom; border-bottom: 3px solid #00c0ef; font-weight:bold">
+        <td>
+            @{
+                var attrs = new Dictionary<string, object>();
+                attrs.Add("class", "groupRole");
+                attrs.Add("id", Model.GroupName);
+            }
+            @Html.CheckBoxFor(i => i.Selected, attrs)
+            @Html.DisplayFor(model => Model.GroupName)
+        </td>
+    </tr>
+}
+else
+{
+    <tr>
+        <td>
+            @Html.HiddenFor(i => i.Id)
+            @{
+                var attrs = new Dictionary<string, object>();
+                attrs.Add("class", "sonRole " + Model.GroupName);
+
+                attrs.Add("data-parent", Model.GroupName);
+            }
+            @Html.CheckBoxFor(i => i.Selected)
+            @Html.DisplayFor(model => Model.Descripcion)
+        </td>
+    </tr>
+}

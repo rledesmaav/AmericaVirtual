@@ -1,0 +1,150 @@
+﻿@model Barberia.Models.TurnoDedicacionModel
+@using Resources
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.ORID)
+    @Html.HiddenFor(model => model.IdEnte)
+    @Html.HiddenFor(model => model.IdEmpleado)
+    @Html.HiddenFor(model => model.IdServicio)
+    @Html.HiddenFor(model => model.DiaSemana)
+
+    <div class="form-horizontal">
+
+        <div class="row" style="padding-bottom:20px">
+            <div class="col-md-12">
+                <h4>Editar Dedicación</h4>
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Datos</h3>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EnteDesc)
+                            @Html.EditorFor(model => model.EnteDesc, new { htmlAttributes = new { @readonly = "@readonly", @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdEmpleado)
+                            @Html.EditorFor(model => model.EmpleadoDesc, new { htmlAttributes = new { @readonly = "@readonly", @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdServicio)
+                            @Html.EditorFor(model => model.ServicioDesc, new { htmlAttributes = new { @readonly = "@readonly", @class = "form-control" } })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Desde)
+                            @Html.TextBoxFor(model => model.Desde, "", new { @type = "time", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Desde, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Hasta)
+                            @Html.TextBoxFor(model => model.Hasta, "", new { @type = "time", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Hasta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AtencionesPorBloqueHorario)
+                            @Html.EditorFor(model => model.AtencionesPorBloqueHorario, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AtencionesPorBloqueHorario, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DuracionBloqueHorario)
+                            @Html.EditorFor(model => model.DuracionBloqueHorario, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DuracionBloqueHorario, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TopeAtencionesDiarias)
+                            @Html.EditorFor(model => model.TopeAtencionesDiarias, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TopeAtencionesDiarias, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer row">
+
+            <div class="col-md-4">
+                <input type="submit" id="btnEditar" style="width:100%" value="EDITAR" class="btn btn-default" />
+            </div>
+            <div class="col-md-4">
+                <input onclick="window.location='@Url.Action("Index")';" style="width:100%" value="VOLVER" class="btn btn-default" />
+            </div>
+
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/smyp.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        });
+
+        $('form').submit(function (e) {
+
+            var desde = $('#Desde').val();
+            var hasta = $('#Hasta').val();
+            if (desde >= hasta) {
+                alert("Introducir correctamente valores desde / hasta");
+                return;
+            }
+
+            var valid = true;
+            $("form").each(function () {
+                valid = valid && $(this).valid();
+            }); if (!valid) return;
+
+            document.getElementById("btnEditar").value = "Enviando...";
+            document.getElementById("btnEditar").disabled = true;
+
+            return true;
+
+        });
+
+    </script>
+}

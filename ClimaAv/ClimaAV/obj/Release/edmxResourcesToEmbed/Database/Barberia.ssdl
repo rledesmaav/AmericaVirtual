@@ -1,0 +1,734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BarberiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Caja">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="FechaApertura" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="FechaCierre" Type="datetime2" Precision="7" />
+    <Property Name="Observacion" Type="varchar" MaxLength="100" />
+    <Property Name="MontoTotal" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Numero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nacimiento" Type="date" />
+    <Property Name="Movil" Type="varchar" MaxLength="100" />
+    <Property Name="Telefono" Type="varchar" MaxLength="100" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+    <Property Name="UsuarioApp" Type="varchar" MaxLength="100" />
+    <Property Name="IdLocalidad" Type="uniqueidentifier" />
+    <Property Name="IdSexo" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClienteTurno">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Documento" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nacimiento" Type="date" />
+    <Property Name="Movil" Type="varchar" MaxLength="100" />
+    <Property Name="Telefono" Type="varchar" MaxLength="100" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+    <Property Name="UsuarioApp" Type="varchar" MaxLength="100" />
+    <Property Name="IdLocalidad" Type="uniqueidentifier" />
+    <Property Name="IdSexo" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Compra">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdProveedor" Type="uniqueidentifier" />
+    <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+    <Property Name="IdTipoComprobante" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="NumeroComprobante" Type="varchar" MaxLength="50" />
+    <Property Name="Fecha" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Impuesto" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="MontoTotal" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="IdEstado" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdCaja" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CompraEstado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetalleCompra">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdCompra" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdProducto" Type="uniqueidentifier" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="IdProveedor" Type="uniqueidentifier" />
+    <Property Name="Descuento" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Precio" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdVenta" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdProducto" Type="uniqueidentifier" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="IdServicio" Type="uniqueidentifier" />
+    <Property Name="IdEmpleado" Type="uniqueidentifier" />
+    <Property Name="IdCliente" Type="uniqueidentifier" />
+    <Property Name="Descuento" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Precio" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DiaNoLaborable">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEnte" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Fecha" Type="date" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+    <Property Name="IdEmpleado" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Documento" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nacimiento" Type="date" />
+    <Property Name="Movil" Type="varchar" MaxLength="100" />
+    <Property Name="Telefono" Type="varchar" MaxLength="100" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+    <Property Name="IdLocalidad" Type="uniqueidentifier" />
+    <Property Name="IdSexo" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmpleadoEspecialidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEmpleado" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEspecialidad" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ente">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Calle" Type="varchar" MaxLength="100" />
+    <Property Name="Altura" Type="int" />
+    <Property Name="Depto" Type="varchar" MaxLength="3" />
+    <Property Name="Piso" Type="int" />
+    <Property Name="Telefono" Type="varchar" MaxLength="50" />
+    <Property Name="Latitud" Type="varchar" MaxLength="100" />
+    <Property Name="Longitud" Type="varchar" MaxLength="100" />
+    <Property Name="IdLocalidad" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Foto" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EnteEmpleado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEnte" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEmpleado" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EnteEspecialidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEnte" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEspecialidad" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Especialidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Localidad">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdPartido" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CodigoPostal" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Partido">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="IdProvincia" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="MinimoStock" Type="int" />
+    <Property Name="PrecioCompra" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="PrecioVenta" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="IdProveedor" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Proveedor">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NombreContacto" Type="varchar" MaxLength="100" />
+    <Property Name="Telefono" Type="varchar" MaxLength="100" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+    <Property Name="Calle" Type="varchar" MaxLength="100" />
+    <Property Name="Altura" Type="int" />
+    <Property Name="CUIT" Type="int" />
+  </EntityType>
+  <EntityType Name="Provincia">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RolID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolRule">
+    <Key>
+      <PropertyRef Name="RuleId" />
+      <PropertyRef Name="RolID" />
+    </Key>
+    <Property Name="RuleId" Type="int" Nullable="false" />
+    <Property Name="RolID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Definicion" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Servicio">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Monto" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IdEspecialidad" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Sexo">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Fecha" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Entrada" Type="int" />
+    <Property Name="Salida" Type="int" />
+    <Property Name="IdProducto" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+    <Property Name="IdTipoOperacion" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdDetalleCompra" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="TipoComprobante">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoOperacion">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Debe" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Turno">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FechaHora" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Registrado" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Confirmado" Type="datetime2" Precision="7" />
+    <Property Name="Presente" Type="bit" />
+    <Property Name="FechaPresente" Type="datetime2" Precision="7" />
+    <Property Name="IdCliente" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdDedicacion" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdTurnoTipo" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdTurnoEstado" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SobreTurno" Type="bit" />
+  </EntityType>
+  <EntityType Name="TurnoDedicacion">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEnte" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEmpleado" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdUser" Type="bigint" Nullable="false" />
+    <Property Name="IdServicio" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DiaSemana" Type="int" Nullable="false" />
+    <Property Name="Desde" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Hasta" Type="time" Precision="7" Nullable="false" />
+    <Property Name="DuracionBloqueHorario" Type="int" Nullable="false" />
+    <Property Name="AtencionesPorBloqueHorario" Type="int" Nullable="false" />
+    <Property Name="TopeAtencionesDiarias" Type="int" Nullable="false" />
+    <Property Name="GrupoAtencionSimultanea" Type="varchar" MaxLength="20" />
+    <Property Name="BajaLogica" Type="datetime" />
+    <Property Name="EsEspecial" Type="bit" />
+  </EntityType>
+  <EntityType Name="TurnoEstado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TurnoTipo">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RequiereValidacion" Type="bit" Nullable="false" />
+    <Property Name="BajaLogica" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PasswordHash" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Telefono" Type="varchar" MaxLength="30" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="Foto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdEnte" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRol">
+    <Key>
+      <PropertyRef Name="RolID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="RolID" Type="bigint" Nullable="false" />
+    <Property Name="UserID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdCliente" Type="uniqueidentifier" />
+    <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+    <Property Name="IdTipoComprobante" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="NumeroComprobante" Type="varchar" MaxLength="50" />
+    <Property Name="Fecha" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Impuesto" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="MontoTotal" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="IdEstado" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdCaja" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VentaEstado">
+    <Key>
+      <PropertyRef Name="ORID" />
+    </Key>
+    <Property Name="ORID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Cliente_Localidad">
+    <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_Sexo">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="IdSexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empleado_Localidad">
+    <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empleado_Sexo">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IdSexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ente_Localidad">
+    <End Role="Localidad" Type="Self.Localidad" Multiplicity="1" />
+    <End Role="Ente" Type="Self.Ente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Ente">
+        <PropertyRef Name="IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnteEspecialidad_Ente">
+    <End Role="Ente" Type="Self.Ente" Multiplicity="1" />
+    <End Role="EnteEspecialidad" Type="Self.EnteEspecialidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="EnteEspecialidad">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnteEspecialidad_Especialidad">
+    <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+    <End Role="EnteEspecialidad" Type="Self.EnteEspecialidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="EnteEspecialidad">
+        <PropertyRef Name="IdEspecialidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Localidad_Partido">
+    <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+    <End Role="Localidad" Type="Self.Localidad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partido">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Localidad">
+        <PropertyRef Name="IdPartido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partido_Provincia">
+    <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+    <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provincia">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Partido">
+        <PropertyRef Name="IdProvincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolRule_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="RolRule" Type="Self.RolRule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="RolID" />
+      </Principal>
+      <Dependent Role="RolRule">
+        <PropertyRef Name="RolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolRule_Rule">
+    <End Role="Rule" Type="Self.Rule" Multiplicity="1" />
+    <End Role="RolRule" Type="Self.RolRule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolRule">
+        <PropertyRef Name="RuleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Servicio_Especialidad">
+    <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="0..1" />
+    <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidad">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="Servicio">
+        <PropertyRef Name="IdEspecialidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TurnoDedicacion_Empleado">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="TurnoDedicacion" Type="Self.TurnoDedicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="TurnoDedicacion">
+        <PropertyRef Name="IdEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TurnoDedicacion_Ente">
+    <End Role="Ente" Type="Self.Ente" Multiplicity="1" />
+    <End Role="TurnoDedicacion" Type="Self.TurnoDedicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="TurnoDedicacion">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TurnoDedicacion_Servicio">
+    <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
+    <End Role="TurnoDedicacion" Type="Self.TurnoDedicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Servicio">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="TurnoDedicacion">
+        <PropertyRef Name="IdServicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TurnoDedicacion_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TurnoDedicacion" Type="Self.TurnoDedicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="TurnoDedicacion">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Ente">
+    <End Role="Ente" Type="Self.Ente" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ente">
+        <PropertyRef Name="ORID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdEnte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="UserRol" Type="Self.UserRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="RolID" />
+      </Principal>
+      <Dependent Role="UserRol">
+        <PropertyRef Name="RolID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRol_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRol" Type="Self.UserRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserRol">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BarberiaModelStoreContainer">
+    <EntitySet Name="Caja" EntityType="Self.Caja" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClienteTurno" EntityType="Self.ClienteTurno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Compra" EntityType="Self.Compra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompraEstado" EntityType="Self.CompraEstado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleCompra" EntityType="Self.DetalleCompra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DiaNoLaborable" EntityType="Self.DiaNoLaborable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmpleadoEspecialidad" EntityType="Self.EmpleadoEspecialidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ente" EntityType="Self.Ente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EnteEmpleado" EntityType="Self.EnteEmpleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EnteEspecialidad" EntityType="Self.EnteEspecialidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Localidad" EntityType="Self.Localidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partido" EntityType="Self.Partido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolRule" EntityType="Self.RolRule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rule" EntityType="Self.Rule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Servicio" EntityType="Self.Servicio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoComprobante" EntityType="Self.TipoComprobante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoOperacion" EntityType="Self.TipoOperacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TurnoDedicacion" EntityType="Self.TurnoDedicacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TurnoEstado" EntityType="Self.TurnoEstado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TurnoTipo" EntityType="Self.TurnoTipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRol" EntityType="Self.UserRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VentaEstado" EntityType="Self.VentaEstado" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cliente_Localidad" Association="Self.FK_Cliente_Localidad">
+      <End Role="Localidad" EntitySet="Localidad" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_Sexo" Association="Self.FK_Cliente_Sexo">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empleado_Localidad" Association="Self.FK_Empleado_Localidad">
+      <End Role="Localidad" EntitySet="Localidad" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empleado_Sexo" Association="Self.FK_Empleado_Sexo">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ente_Localidad" Association="Self.FK_Ente_Localidad">
+      <End Role="Localidad" EntitySet="Localidad" />
+      <End Role="Ente" EntitySet="Ente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnteEspecialidad_Ente" Association="Self.FK_EnteEspecialidad_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="EnteEspecialidad" EntitySet="EnteEspecialidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnteEspecialidad_Especialidad" Association="Self.FK_EnteEspecialidad_Especialidad">
+      <End Role="Especialidad" EntitySet="Especialidad" />
+      <End Role="EnteEspecialidad" EntitySet="EnteEspecialidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Localidad_Partido" Association="Self.FK_Localidad_Partido">
+      <End Role="Partido" EntitySet="Partido" />
+      <End Role="Localidad" EntitySet="Localidad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partido_Provincia" Association="Self.FK_Partido_Provincia">
+      <End Role="Provincia" EntitySet="Provincia" />
+      <End Role="Partido" EntitySet="Partido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolRule_Rol" Association="Self.FK_RolRule_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolRule" EntitySet="RolRule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolRule_Rule" Association="Self.FK_RolRule_Rule">
+      <End Role="Rule" EntitySet="Rule" />
+      <End Role="RolRule" EntitySet="RolRule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Servicio_Especialidad" Association="Self.FK_Servicio_Especialidad">
+      <End Role="Especialidad" EntitySet="Especialidad" />
+      <End Role="Servicio" EntitySet="Servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TurnoDedicacion_Empleado" Association="Self.FK_TurnoDedicacion_Empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="TurnoDedicacion" EntitySet="TurnoDedicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TurnoDedicacion_Ente" Association="Self.FK_TurnoDedicacion_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="TurnoDedicacion" EntitySet="TurnoDedicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TurnoDedicacion_Servicio" Association="Self.FK_TurnoDedicacion_Servicio">
+      <End Role="Servicio" EntitySet="Servicio" />
+      <End Role="TurnoDedicacion" EntitySet="TurnoDedicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TurnoDedicacion_User" Association="Self.FK_TurnoDedicacion_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="TurnoDedicacion" EntitySet="TurnoDedicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Ente" Association="Self.FK_User_Ente">
+      <End Role="Ente" EntitySet="Ente" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRol_Rol" Association="Self.FK_UserRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="UserRol" EntitySet="UserRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRol_User" Association="Self.FK_UserRol_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRol" EntitySet="UserRol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

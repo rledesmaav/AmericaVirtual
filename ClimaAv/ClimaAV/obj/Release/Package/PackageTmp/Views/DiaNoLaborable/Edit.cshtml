@@ -1,0 +1,94 @@
+﻿@model Barberia.Models.DiaNoLaborableModel
+@using Resources
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.ORID)
+    @Html.HiddenFor(model => model.IdEnte)
+
+    <div class="form-horizontal">
+
+        <div class="row" style="padding-bottom:20px">
+            <div class="col-md-12">
+                <h4>Editar Día</h4>
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Datos <small>de</small> Empleado</h3>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Fecha)
+                            @Html.TextBoxFor(model => model.Fecha, "", new { @type = "date", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descripcion)
+                            @Html.TextAreaFor(model => model.Descripcion, 4, 55, new { @style = "width:100%" })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer row">
+
+        <div class="col-md-4">
+            <input type="submit" id="btnEditar" style="width:100%" value="EDITAR" class="btn btn-default" />
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/smyp.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#Fecha").focus();
+        });
+
+        $('form').submit(function (e) {
+
+            var valid = true;
+            $("form").each(function () {
+                valid = valid && $(this).valid();
+            }); if (!valid) return;
+
+            document.getElementById("btnEditar").value = "Enviando...";
+            document.getElementById("btnEditar").disabled = true;
+
+            return true;
+
+        });
+
+    </script>
+}

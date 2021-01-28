@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AmericaVirtualModelStoreContainer" CdmEntityContainer="AmericaVirtualEntities">
+    <EntitySetMapping Name="Autor">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Autor">
+        <MappingFragment StoreEntitySet="Autor">
+          <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Autor2">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Autor2">
+        <MappingFragment StoreEntitySet="Autor2">
+          <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ente">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Ente">
+        <MappingFragment StoreEntitySet="Ente">
+          <ScalarProperty Name="ORID" ColumnName="ORID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="Altura" ColumnName="Altura" />
+          <ScalarProperty Name="Depto" ColumnName="Depto" />
+          <ScalarProperty Name="Piso" ColumnName="Piso" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+          <ScalarProperty Name="IdLocalidad" ColumnName="IdLocalidad" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnteEspecialidad">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.EnteEspecialidad">
+        <MappingFragment StoreEntitySet="EnteEspecialidad">
+          <ScalarProperty Name="ORID" ColumnName="ORID" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+          <ScalarProperty Name="IdEspecialidad" ColumnName="IdEspecialidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Especialidad">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Especialidad">
+        <MappingFragment StoreEntitySet="Especialidad">
+          <ScalarProperty Name="ORID" ColumnName="ORID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estudiante">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Estudiante">
+        <MappingFragment StoreEntitySet="Estudiante">
+          <ScalarProperty Name="IdLector" ColumnName="IdLector" />
+          <ScalarProperty Name="CI" ColumnName="CI" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Carrera" ColumnName="Carrera" />
+          <ScalarProperty Name="Edad" ColumnName="Edad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Libro">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Libro">
+        <MappingFragment StoreEntitySet="Libro">
+          <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Editorial" ColumnName="Editorial" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Localidad">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Localidad">
+        <MappingFragment StoreEntitySet="Localidad">
+          <ScalarProperty Name="ORID" ColumnName="ORID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdPartido" ColumnName="IdPartido" />
+          <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partido">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Partido">
+        <MappingFragment StoreEntitySet="Partido">
+          <ScalarProperty Name="ORID" ColumnName="ORID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prestamo">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Prestamo">
+        <MappingFragment StoreEntitySet="Prestamo">
+          <ScalarProperty Name="IdLector" ColumnName="IdLector" />
+          <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
+          <ScalarProperty Name="FechaPrestamo" ColumnName="FechaPrestamo" />
+          <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+          <ScalarProperty Name="Devuelto" ColumnName="Devuelto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Provincia">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Provincia">
+        <MappingFragment StoreEntitySet="Provincia">
+          <ScalarProperty Name="ORID" ColumnName="ORID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rol">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="RolID" ColumnName="RolID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rule">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.Rule">
+        <MappingFragment StoreEntitySet="Rule">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Definicion" ColumnName="Definicion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="AmericaVirtualModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="IdEnte" ColumnName="IdEnte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="LibAut" TypeName="AmericaVirtualModel.LibAut" StoreEntitySet="LibAut">
+      <EndProperty Name="Autor">
+        <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+      </EndProperty>
+      <EndProperty Name="Libro">
+        <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RolRule" TypeName="AmericaVirtualModel.RolRule" StoreEntitySet="RolRule">
+      <EndProperty Name="Rol">
+        <ScalarProperty Name="RolID" ColumnName="RolID" />
+      </EndProperty>
+      <EndProperty Name="Rule">
+        <ScalarProperty Name="Id" ColumnName="RuleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserRol" TypeName="AmericaVirtualModel.UserRol" StoreEntitySet="UserRol">
+      <EndProperty Name="Rol">
+        <ScalarProperty Name="RolID" ColumnName="RolID" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

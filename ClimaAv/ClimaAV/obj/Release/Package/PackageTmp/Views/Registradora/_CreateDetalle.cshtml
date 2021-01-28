@@ -1,0 +1,128 @@
+﻿
+@model Barberia.Models.DetalleVentaModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal fade" id="ModalDetalleVenta" data-backdrop="static">
+
+
+        @Html.HiddenFor(model => model.IdVenta, new { @class = "detvent" })
+        @Html.HiddenFor(model => model.TipoDetalle, new { @class = "detvent" })
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Detalle de Venta</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="accordion" id="accordionExample">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdCliente)
+                                @Html.DropDownList("IdCliente", new SelectList(ViewBag.Clientes, "ORID", "Apellido"), "SIN DEFINIR", new { @class = "form-control detvent" })
+                                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <button class="btn btn-primary" type="button" data-toggle="collapse" onclick="CierroServicioVenta()" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Productos</button>
+
+                            </div>
+                            <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.IdProducto)
+                                                @Html.DropDownList("IdProducto", new SelectList(ViewBag.Productos, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control detvent" })
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTwo" onclick="CierroProductoVenta()" aria-expanded="false" aria-controls="collapseTwo">Servicios</button>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.IdServicio)
+                                                @Html.DropDownList("IdServicio", new SelectList(ViewBag.Servicios, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control detvent" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.IdEmpleado)
+                                                @Html.DropDownList("IdEmpleado", new SelectList(ViewBag.Empleados, "ORID", "Apellido"), "SIN DEFINIR", new { @class = "form-control detvent" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">@Html.LabelFor(model => model.Cantidad)</label>
+                                    @Html.TextBoxFor(model => model.Cantidad, null, new { onchange = "CalculoNumerosDetalleVenta(this)", @class = "form-control detvent", @maxlength = "6" })@*, @onkeypress = "return soloNumeros(event);" })*@
+                                    <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.Cantidad)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">@Html.LabelFor(model => model.PrecioM)</label>
+                                    @Html.TextBoxFor(model => model.PrecioM, null, new { @class = "form-control detvent", @maxlength = "6", @readonly = "readonly" })@*, @onkeypress = "return soloNumeros(event);" })*@
+                                    <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.PrecioM)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">@Html.LabelFor(model => model.DescuentoM)</label>
+                                    @Html.TextBoxFor(model => model.DescuentoM, null, new { onchange = "CalculoNumerosDetalleVenta(this)", @class = "form-control detvent", @maxlength = "6" })@*, @onkeypress = "return soloNumeros(event);" })*@
+                                    <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.DescuentoM)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">@Html.LabelFor(model => model.MontoM)</label>
+                                    @Html.TextBoxFor(model => model.MontoM, null, new { @class = "form-control detvent", @maxlength = "6", @readonly = "readonly" })@*, @onkeypress = "return soloNumeros(event);" })*@
+                                    <span style="color:#DF3468">@Html.ValidationMessageFor(model => model.MontoM)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" onclick="ProcesarDetalleVenta()" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}

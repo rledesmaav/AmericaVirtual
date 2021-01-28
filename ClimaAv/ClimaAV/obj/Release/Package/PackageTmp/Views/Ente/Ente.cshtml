@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Salud.Database.Ente>
+@using Resources
+@using System.Configuration
+
+@{
+    ViewBag.Title = Resources.Ente;
+}
+
+<section class="content-header">
+    <h3 class="box-title">@ViewBag.Title</h3>
+</section>
+
+<section class="content">
+
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CODE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Altura)
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CODE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Calle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Altura)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div style="padding:10px; border:1px solid black">
+        <div><a href="@Url.Action("Report", new { id="PDF" })">Reporte PDF</a></div>
+        <div><a href="@Url.Action("Report", new { id="Excel" })">Reporte Excel</a></div>
+        <div><a href="@Url.Action("Report", new { id="Word" })">Reporte Word</a></div>
+        <div><a href="@Url.Action("Report", new { id="Image" })">Reporte Imagen</a></div>
+    </div>
+
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

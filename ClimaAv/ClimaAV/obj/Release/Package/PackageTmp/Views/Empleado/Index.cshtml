@@ -1,0 +1,115 @@
+﻿@model Barberia.Models.EmpleadoModel
+@using Resources
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Documento)
+                @Html.EditorFor(model => model.Documento, new { htmlAttributes = new { @class = "form-control persona", @maxlength = "12", @onkeypress = "return SoloNumeros()" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Apellido)
+                @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control persona", @maxlength = "50", onkeyup = "Mayuscula(this)" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control persona", @maxlength = "100", onkeyup = "Mayuscula(this)" } })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdLocalidad)
+                @Html.DropDownList("IdLocalidad", new SelectList(ViewBag.Localidades, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control persona" })
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="ProcesarFiltro()" class="btn btn-primary form-control">Buscar</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="GenerarExcel()" class="btn btn-primary form-control">Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="empleados">
+        @Html.Partial("_EmpleadoLista", new List<Barberia.Models.EmpleadoListaModel>())
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(function () {
+            $("#empleadosLista").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "ordering": false,
+                "paging": false
+            });
+        });
+
+        $(document).ready(function () {
+            $('#Numero').focus();
+        });
+
+        function ProcesarFiltro() {
+
+            var persona = {};
+
+            $('.persona').each(function () {
+                var name = $(this).attr('id');
+                persona[name] = $(this).val();
+            });
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(persona),
+                url: '@Url.Action("EmpleadoLista", "Empleado")',
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+
+                    $('#empleados').html(data);
+
+                    $(function () {
+                        $("#empleadosLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+        }
+
+        function GenerarExcel() {
+            $('#empleadosLista').table2excel({ name: "Prueba", filename: "Personas-Excel" });
+        }
+
+    </script>
+}

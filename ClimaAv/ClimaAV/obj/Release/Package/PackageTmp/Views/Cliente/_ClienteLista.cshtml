@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Barberia.Models.ClienteListaModel>
+@using Resources
+
+@if (Model.Count() != 0)
+{
+    <table id="clientesLista" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Editar</th>
+                <th>Número</th>
+                <th>Cliente</th>
+                <th>Nacimiento</th>
+                <th>Localidad</th>
+                <th>Teléfono</th>
+                <th>Móvil</th>
+                <th>Correo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a style="padding:15px" title="@Resources.Editar" href="@Url.Action("Edit", new { id = item.ORID })"><i class="fas fa-pen"></i></a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Numero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido) @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nacimiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Localidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Movil)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Correo)
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Editar</th>
+                <th>Número</th>
+                <th>Cliente</th>
+                <th>Nacimiento</th>
+                <th>Localidad</th>
+                <th>Teléfono</th>
+                <th>Móvil</th>
+                <th>Correo</th>
+            </tr>
+        </tfoot>
+    </table>
+}

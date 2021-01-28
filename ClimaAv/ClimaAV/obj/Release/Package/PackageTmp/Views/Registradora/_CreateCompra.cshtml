@@ -1,0 +1,79 @@
+﻿@model Barberia.Models.CompraModel
+@using Resources
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="modal fade" id="ModalCompra" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Crear Compra</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NumeroCajaCompra)
+                            @Html.EditorFor(model => model.NumeroCajaCompra, new { htmlattributes = new { @class = "form-control ccomp",  @maxlength = "12", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdProveedor)
+                            @Html.DropDownList("IdProveedor", new SelectList(ViewBag.Proveedores, "ORID", "Nombre"), "SIN DEFINIR", new { @class = "form-control ccomp" })
+                            @Html.ValidationMessageFor(model => model.IdProveedor, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdTipoComprobanteCompra)
+                            @Html.DropDownList("IdTipoComprobanteCompra", new SelectList(ViewBag.TipoComprobante, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control ccomp" })
+                            @Html.ValidationMessageFor(model => model.IdTipoComprobanteCompra, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NumeroComprobanteCompraC)
+                            @Html.EditorFor(model => model.NumeroComprobanteCompraC, new { htmlAttributes = new { @class = "form-control ccomp", @maxlength = "50" } })
+                            @Html.ValidationMessageFor(model => model.NumeroComprobanteCompraC, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    @*<div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ImpuestoMC)
+                            @Html.EditorFor(model => model.ImpuestoMC, new { htmlAttributes = new { @class = "form-control ccomp", @maxlength = "5" } })
+                            @Html.ValidationMessageFor(model => model.ImpuestoMC, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+
+
+
+                </div>
+            </div>
+
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="ProcesarCompra()" class="btn btn-primary">Guardar</button>
+                </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+

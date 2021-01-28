@@ -1,0 +1,72 @@
+﻿@model Barberia.Models.StockModel
+@using Resources
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Crear Movimiento de Stock</h4>
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Movimiento <small>de</small> Stock</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdTipoOperacion)
+                            @Html.DropDownList("IdTipoOperacion", new SelectList(ViewBag.TipoOperaciones, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control stockcito" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdProducto)
+                            @Html.DropDownList("IdProducto", new SelectList(ViewBag.Productos, "ORID", "Descripcion"), "SIN DEFINIR", new { @class = "form-control stockcito" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <br />
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><input type="checkbox" name="check" id="checkTipo" value="1" onchange="showCantidades()" /> ¿Es Entrada?</label>
+                            @Html.EditorFor(model => model.Entrada, new { htmlAttributes = new { @class = "form-control", @maxlength = "5", @readonly = "readonly", onkeyup = "SoloNumeros(this)" } })
+                            @Html.ValidationMessageFor(model => model.Entrada, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Salida)
+                            @Html.EditorFor(model => model.Salida, new { htmlAttributes = new { @class = "form-control", @maxlength = "5", onkeyup = "SoloNumeros(this)" } })
+                            @Html.ValidationMessageFor(model => model.Salida, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+     
+
+        <div class="card-footer row">
+
+            <div class="col-md-4">
+                <input type="submit" id="btnCrear" style="width:100%" value="CREAR" class="btn btn-default" />
+            </div>
+
+        </div>
+
+    </div>
+}
+

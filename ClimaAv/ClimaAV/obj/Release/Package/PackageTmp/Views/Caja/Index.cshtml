@@ -1,0 +1,115 @@
+﻿@model Barberia.Models.CajaModel
+@using Resources
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Control de cajas</h4>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Numero)
+                @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control caj", @maxlength = "12", @onkeypress = "return SoloNumeros()" } })
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdUsuario)
+                @Html.DropDownList("IdUsuario", new SelectList(ViewBag.Usuarios, "UserId", "Apellido"), "SIN DEFINIR", new { @class = "form-control caj" })
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="ProcesarFiltro()" class="btn btn-primary form-control">Buscar</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="location.href='@Url.Action("Create", "Caja" )'" class="btn btn-primary form-control">Crear</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="GenerarExcel()" class="btn btn-primary form-control">Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cajas">
+        @Html.Partial("_CajaLista", new List<Barberia.Models.CajaListaModel>())
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(function () {
+            $("#cajasLista").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "ordering": false,
+                "paging": false
+            });
+        });
+
+        $(document).ready(function () {
+            $('#Numero').focus();
+        });
+
+        function ProcesarFiltro() {
+
+            var caj = {};
+
+            $('.caj').each(function () {
+                var name = $(this).attr('id');
+                caj[name] = $(this).val();
+            });
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(persona),
+                url: '@Url.Action("CajaLista", "Caja")',
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+
+                    $('#cajas').html(data);
+
+                    $(function () {
+                        $("#cajasLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+        }
+
+        function GenerarExcel() {
+            $('#cajasLista').table2excel({ name: "Prueba", filename: "Cajas-Excel" });
+        }
+
+    </script>
+}

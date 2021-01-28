@@ -1,0 +1,52 @@
+﻿.fullscreen-modal .modal-dialog {
+    margin: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.loading-bar {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../Images/nico.gif');
+    background-position: 50% 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-repeat: no-repeat;
+}
+
+body.loading {
+    overflow: hidden;
+}
+
+    body.loading .loading-bar {
+        display: block;
+    }
+
+
+
+.loading-peron {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../Images/peron.gif');
+    background-position: 50% 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-repeat: no-repeat;
+}
+
+body.peron {
+    overflow: hidden;
+}
+
+    body.peron .loading-peron {
+        display: block;
+    }

@@ -1,0 +1,40 @@
+﻿@model ClimaAV.Models.LoginModel
+
+@{
+    ViewBag.Title = "LOGIN";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="login-page">
+    <div class="form">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
+        {
+            @Html.TextBoxFor(m => Model.UserName, new { @placeholder = "USUARIO", @class = "form-control", @maxlength = "30" })
+            @Html.ValidationMessageFor(m => Model.UserName)
+
+            @Html.PasswordFor(m => Model.Password, new { @placeholder = "PASS", @class = "form-control", @maxlength = "30" })
+            @Html.ValidationMessageFor(m => Model.Password)
+            <button type="submit" id="login" class="btn btn-primary btn-block btn-flat">INGRESAR</button>
+        }
+    </div>
+</div>
+
+
+        }
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        var txtBox = document.getElementById("UserName");
+        if (txtBox != null) txtBox.focus();
+
+        $('.message a').click(function () {
+            $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+        });
+
+    </script>
+
+}

@@ -1,0 +1,82 @@
+﻿@model Barberia.Models.CajaModel
+@using Resources
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Crear Caja</h4>
+            </div>
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Datos <small>de</small> Caja</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Numero)
+                            @Html.EditorFor(model => model.NumeroM, new { htmlAttributes = new { @Value = ViewBag.Numero ,disabled = "disabled", @readonly = "readonly", @maxlength = "12", @onkeypress = "return SoloNumeros()" } })
+                            
+                        </div>
+                    </div>
+
+                </div>
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Observacion)
+                                @Html.EditorFor(model => model.Observacion, new { htmlAttributes = new { @class = "form-control", @maxlength = "100", onkeyup = "Mayuscula(this)" } })
+                                @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdUsuario)
+                                @Html.DropDownList("IdUsuario", new SelectList(ViewBag.Usuarios, "UserID", "Apellido"), "SIN DEFINIR", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.IdUsuario, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        <div class="card-footer row">
+
+            <div class="col-md-4">
+                <input type="submit" id="btnCrear" style="width:100%" value="CREAR" class="btn btn-default" />
+            </div>
+
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/smyp.js"></script>
+
+    <script type="text/javascript">
+
+
+        $("#Apellido").focus();
+
+
+
+    </script>
+}

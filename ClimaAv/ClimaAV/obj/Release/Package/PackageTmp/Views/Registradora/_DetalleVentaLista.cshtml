@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Barberia.Models.DetalleVentaListaModel>
+@using Resources
+
+@if (Model.Count() != 0)
+{
+    <div class="col-md-6">
+        <h4>Detalles de Venta</h4>
+    </div>
+    <table id="ModalDetalleVentaLista" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Borrar</th>
+                <th>Producto/Servicio</th> @*Aca hay que mostrar cualquiera de los dos, el que corresponda*@
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Empleado</th>
+                <th>Cliente</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <a style="padding:15px" title="Eliminar Detalle" href="#" onclick="DelDetalleVentaModal('@item.ORID', '@item.IdVenta')"><i class="far fa-trash-alt"></i></a>
+                    
+                </td>
+                @if (item.Detalle == "Servicio")
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Servicio)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producto)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empleado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Borrar</th>
+                <th>Producto/Servicio</th> @*Aca hay que mostrar cualquiera de los dos, el que corresponda*@
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Empleado</th>
+                <th>Cliente</th>
+                <th>Total</th>
+            </tr>
+        </tfoot>
+    </table>
+}

@@ -1,0 +1,107 @@
+﻿@model Barberia.Models.TurnoDedicacionModel
+@using Resources
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row" style="padding-bottom:20px">
+        <div class="col-md-12">
+            <h4>Dedicación | @Html.ActionLink("Crear", "Create")</h4>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.DropDownList("IdEnte", new SelectList(ViewBag.Entes, "ORID", "Descripcion"), "SELECCIONE ENTE...", new { @class = "form-control dedicacion" })
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="ProcesarFiltro()" class="btn btn-primary form-control">Buscar</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" onclick="GenerarExcel()" class="btn btn-primary form-control">Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dedicaciones">
+        @Html.Partial("_TDLista", new List<Barberia.Models.TurnoDedicacionListaModel>())
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(function () {
+            $("#dedicacionLista").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "ordering": false,
+                "paging": false
+            });
+        });
+
+        $(document).ready(function () {
+            $('#IdEnte').focus();
+        });
+
+        function ProcesarFiltro() {
+
+            var ente = $('#IdEnte').val();
+
+            if (ente == '') {
+                alert('Seleccione un Ente');
+                retunr;
+            }
+
+            var dedicacion = {};
+
+            $('.dedicacion').each(function () {
+                var name = $(this).attr('id');
+                dedicacion[name] = $(this).val();
+            });
+
+            document.body.className = "loading";
+
+            $.ajax({
+                data: JSON.stringify(dedicacion),
+                url: '@Url.Action("TurnoDedicacionLista", "TurnoDedicacion")',
+                type: 'post',
+                contentType: "application/json;",
+                success: function (data) {
+
+                    $('#dedicaciones').html(data);
+
+                    $(function () {
+                        $("#dedicacionLista").DataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "ordering": false,
+                            "paging": false
+                        });
+                        document.body.className = "";
+                    });
+
+                }
+            });
+        }
+
+        function GenerarExcel() {
+            $('#dedicacionLista').table2excel({ name: "Prueba", filename: "Personas-Excel" });
+        }
+
+    </script>
+}

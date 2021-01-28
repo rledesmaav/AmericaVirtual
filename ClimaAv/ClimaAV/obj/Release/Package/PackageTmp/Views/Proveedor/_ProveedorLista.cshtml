@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Barberia.Models.ProveedorListaModel>
+@using Resources
+
+@if (Model.Count() != 0)
+{
+    <table id="ProveedoresLista" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Editar</th>
+                <th>Cóodigo</th>
+                <th>Nombre</th>
+                <th>Contacto</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Calle</th>
+                <th>Altura</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a style="padding:15px" title="@Resources.Editar" href="@Url.Action("Edit", new { id = item.ORID })"><i class="fas fa-pen"></i></a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CODE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreContacto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Correo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Calle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Altura)
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Editar</th>
+                <th>Cóodigo</th>
+                <th>Nombre</th>
+                <th>Contacto</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Calle</th>
+                <th>Altura</th>
+            </tr>
+        </tfoot>
+    </table>
+}

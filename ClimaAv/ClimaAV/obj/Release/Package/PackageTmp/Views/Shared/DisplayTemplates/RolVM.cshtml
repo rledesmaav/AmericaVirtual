@@ -1,0 +1,16 @@
+﻿@model Barberia.Models.RolVM
+@using Resources
+
+<tr>
+    <td>
+        @Html.HiddenFor(x => x.RolID)
+        @Model.Description
+    </td>
+    <td>
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(i => i.Selected, new { @disabled = "disabled" })
+            </label>
+        </div>
+    </td>
+</tr>

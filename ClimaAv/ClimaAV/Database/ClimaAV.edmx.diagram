@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="39ca83c061d44048a4ea690daf8ceec9" Name="Diagram1">
+        <EntityTypeShape EntityType="AmericaVirtualModel.Autor" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Autor2" Width="1.5" PointX="7.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Ente" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.EnteEspecialidad" Width="1.5" PointX="9.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Especialidad" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Estudiante" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Libro" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Localidad" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Partido" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Prestamo" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Provincia" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Rol" Width="1.5" PointX="10.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.Rule" Width="1.5" PointX="12.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmericaVirtualModel.User" Width="1.5" PointX="12.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="AmericaVirtualModel.FK_Ente_Localidad" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.FK_EnteEspecialidad_Ente" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.FK_User_Ente" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.FK_EnteEspecialidad_Especialidad" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.FK_Prestamo_Estudiante" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.FK_Prestamo_Libro" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.FK_Localidad_Partido" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.FK_Partido_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.LibAut" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.RolRule" ManuallyRouted="false" />
+        <AssociationConnector Association="AmericaVirtualModel.UserRol" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
