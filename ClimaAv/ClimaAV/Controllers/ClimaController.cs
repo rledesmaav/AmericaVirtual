@@ -14,7 +14,7 @@ namespace ClimaAV.Controllers
     public class ClimaController : Controller
     {
         //KEY API openweathermap.org
-        string appId = "212b49dc91ea1c61dad9b96abb1c004d";
+        string appId = "cc203d69e7ac584739e7bad17da8db94";
         AmericaVirtualEntities  db = new AmericaVirtualEntities();
         public ActionResult Index()
         {
